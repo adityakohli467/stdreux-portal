@@ -22,6 +22,8 @@ const nextConfig = {
       'via.placeholder.com',
       'caterly-uploads-unique-id.s3.ap-southeast-2.amazonaws.com',
       'stdreux.com.au',
+      'api.stdreux.com.au',
+      'stdreux-api-production.up.railway.app',
     ],
     remotePatterns: [
       { protocol: 'https', hostname: '*.s3.ap-southeast-2.amazonaws.com' },
@@ -33,6 +35,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'stdreux.com.au',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.stdreux.com.au',
+      },
+      {
+        protocol: 'https',
+        hostname: 'stdreux-api-production.up.railway.app',
       },
     ],
   },
