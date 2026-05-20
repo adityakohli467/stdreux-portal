@@ -68,6 +68,17 @@ const nextConfig = {
       },
     ];
   },
+
+  // Proxy /uploads/* to the API so image URLs like stdreux.com.au/uploads/... work
+  async rewrites() {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://stdreux-api-production.up.railway.app';
+    return [
+      {
+        source: '/uploads/:path*',
+        destination: `${apiUrl}/uploads/:path*`,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
