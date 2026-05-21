@@ -333,16 +333,10 @@ function PaymentPageContent() {
       const ord = response.data.order;
 
       if (ord) {
-        // Use order_total from the database as the source of truth
-        // Don't recalculate client-side as product option pricing may not be reflected in subtotal
-        const dbTotal = Number.parseFloat(ord.order_total || '0');
-        if (dbTotal > 0) {
-          ord.total = dbTotal.toFixed(2);
-        } else {
-          const newTotal = calculateOrderTotal(ord);
-          ord.total = newTotal;
-          ord.order_total = newTotal;
-        }
+        // Always recalculate total to ensure correctness
+        const newTotal = calculateOrderTotal(ord);
+        ord.total = newTotal;
+        ord.order_total = newTotal;
       }
 
       setOrder(ord);
@@ -662,7 +656,8 @@ function PaymentPageContent() {
                         </span>
                       </div>
                     )}
-                  {order.after_discount && (
+                  {order.after_discount && parseFloat(order.after_discount) > 0 && 
+                    (parseFloat(order.wholesale_discount || "0") > 0 || parseFloat(order.coupon_discount || "0") > 0) && (
                     <div className="flex justify-between">
                       <span>After Discount</span>
                       <span>
