@@ -192,8 +192,12 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
 
           {/* Content */}
           <div 
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: blogPost.content }}
+            className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4 prose-a:text-blue-600 prose-img:rounded-lg"
+            dangerouslySetInnerHTML={{ 
+              __html: blogPost.content.includes('<p>') || blogPost.content.includes('<h') || blogPost.content.includes('<br')
+                ? blogPost.content 
+                : blogPost.content.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')
+            }}
           />
         </div>
       </article>
