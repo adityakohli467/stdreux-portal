@@ -806,7 +806,7 @@ export function ShopPageContent() {
       <section className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-r from-blue-900/90 to-blue-800/90">
         <div className="absolute inset-0">
           <Image
-            src="/assets/sndurex/Frame 1000007200.png"
+            src="/assets/sndurex/shop_page_banner.png"
             alt="Product Catalog"
             fill
             className="object-cover"
