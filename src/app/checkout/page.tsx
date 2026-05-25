@@ -556,12 +556,9 @@ export default function CheckoutPage() {
                   }
 
                   if (overridePrice > 0) {
-                    if (finalBasePrice === 0) {
-                      finalBasePrice = overridePrice
-                      deltaPrice = 0 // Included in base
-                    } else {
-                      deltaPrice = overridePrice
-                    }
+                    // Always keep override price in the option (consistent with product page behavior)
+                    // Do NOT absorb into base - backend expects option prices in options array
+                    deltaPrice = overridePrice
                   } else {
                     // Standard delta price logic
                     if (productValue.has_discount && productValue.discounted_option_price) {
