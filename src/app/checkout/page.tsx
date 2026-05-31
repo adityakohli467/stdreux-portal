@@ -1114,13 +1114,27 @@ export default function CheckoutPage() {
       }
       // Handle "Pay Now / Card" Flow - NEW FLOW
       else {
+        // Cancel any existing stale payment intent before creating a new one
+        const existingIntentId = sessionStorage.getItem('payment_intent_id');
+        if (existingIntentId) {
+          try {
+            await api.post("/store/payment/cancel-intent", { payment_intent_id: existingIntentId });
+            console.log(`[CheckoutPage] Canceled stale intent: ${existingIntentId}`);
+          } catch (cancelErr) {
+            // Non-critical - proceed even if cancel fails
+            console.warn("[CheckoutPage] Failed to cancel stale intent:", cancelErr);
+          }
+          sessionStorage.removeItem('payment_intent_id');
+          sessionStorage.removeItem('client_secret');
+        }
+
         // 1. Create Payment Intent for Cart Amount
         const emailToUse = isAuthenticated ? user?.email : billingData.email;
         console.log(`[CheckoutPage] Initiating payment intent for email: "${emailToUse}", isAuthenticated: ${isAuthenticated}`);
         
         const response = await api.post("/store/payment/create-intent-for-cart", {
           amount: totalAmountToPay,
-          currency: 'aud', // Optional, likely default
+          currency: 'aud',
           email: emailToUse,
           firstname: billingData.firstName,
           lastname: billingData.lastName,
@@ -1130,18 +1144,11 @@ export default function CheckoutPage() {
         const { client_secret, payment_intent_id } = response.data;
 
         // 2. Store Order Payloads and Intent Details in Session Storage
-        // The payment page will read this, complete payment, then create orders
         sessionStorage.setItem('pending_orders', JSON.stringify(preparedOrders));
         sessionStorage.setItem('payment_intent_id', payment_intent_id);
         sessionStorage.setItem('client_secret', client_secret);
 
-        // Also store image if needed? Images in session storage is bad.
-        // We might need to upload image separately or skip for now. 
-        // For now, let's assume the payment page might handle it or we lose it in this flow 
-        // unless we upload it to a temp endpoint. 
-        // Given constraints, we will proceed without complex image handling refactor.
-
-        // 3. Redirect to Payment Page (client_secret passed via sessionStorage, not URL)
+        // 3. Redirect to Payment Page
         router.push(`/payment?mode=intent&amount=${totalAmountToPay}`);
       }
 
