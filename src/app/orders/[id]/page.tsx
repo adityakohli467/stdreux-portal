@@ -17,6 +17,13 @@ interface OrderItem {
   price: string
   total: string
   category?: string
+  options?: Array<{
+    option_name: string
+    option_value: string
+    option_quantity: number
+    option_price: number
+    option_total?: number
+  }>
 }
 
 interface Order {
@@ -250,18 +257,41 @@ export default function OrderDetailPage() {
             <CardContent>
               {order.items && order.items.length > 0 ? (
                 <div className="space-y-4">
-                  {order.items.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center py-3 border-b last:border-0">
-                      <div>
-                        <p className="font-medium">{item.product_name}</p>
-                        <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                  {order.items.map((item, index) => {
+                    const hasOptions = item.options && item.options.length > 0;
+
+                    if (hasOptions) {
+                      return item.options!.map((opt, optIdx) => {
+                        const optTotal = opt.option_total || (opt.option_price * opt.option_quantity);
+                        return (
+                          <div key={`${index}-opt-${optIdx}`} className="flex justify-between items-center py-3 border-b last:border-0">
+                            <div>
+                              {optIdx === 0 && <p className="font-medium">{item.product_name}</p>}
+                              <p className="text-sm text-gray-600 ml-2">{opt.option_name}: {opt.option_value}</p>
+                              <p className="text-sm text-gray-600 ml-2">Quantity: {opt.option_quantity}</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-bold">${optTotal.toFixed(2)}</p>
+                              <p className="text-sm text-gray-600">${opt.option_price.toFixed(2)} each</p>
+                            </div>
+                          </div>
+                        );
+                      });
+                    }
+
+                    return (
+                      <div key={index} className="flex justify-between items-center py-3 border-b last:border-0">
+                        <div>
+                          <p className="font-medium">{item.product_name}</p>
+                          <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold">${parseFloat(item.total).toFixed(2)}</p>
+                          <p className="text-sm text-gray-600">${parseFloat(item.price).toFixed(2)} each</p>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold">${parseFloat(item.total).toFixed(2)}</p>
-                        <p className="text-sm text-gray-600">${parseFloat(item.price).toFixed(2)} each</p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : (
                 <p className="text-gray-500">No items found</p>
