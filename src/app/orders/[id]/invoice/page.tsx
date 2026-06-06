@@ -92,6 +92,7 @@ export default function InvoicePage() {
                                 const product = prodResponse.data.product
                                 if (product && product.categories && product.categories.length > 0) {
                                     item.category = product.categories[0].category_name
+                                    item.gst_free = product.categories.some((cat: any) => cat.gst_free)
                                 }
                             } catch (err) {
                                 console.error(`Failed to fetch product ${item.product_id} for category`, err)
@@ -303,12 +304,10 @@ export default function InvoicePage() {
                                         </div>
 
                                         {(() => {
-                                            const taxableCategories = ["packaging", "ancillaries"];
                                             let taxableAmount = 0;
 
                                             order.items?.forEach(item => {
-                                                const category = item.category?.toLowerCase().trim() || "";
-                                                if (taxableCategories.includes(category)) {
+                                                if (!item.gst_free) {
                                                     taxableAmount += parseFloat(item.total);
                                                 }
                                             });

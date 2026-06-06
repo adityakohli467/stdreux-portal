@@ -325,10 +325,8 @@ export default function CartPage() {
                 <span className="font-medium">$10.00</span>
               </div>
               {(() => {
-                const taxableCategories = ["packaging", "ancillaries"];
                 const taxableAmount = items.reduce((sum, item) => {
-                  const category = item.category?.toLowerCase().trim() || "";
-                  if (taxableCategories.includes(category)) {
+                  if (!item.gst_free) {
                     return sum + (getItemPrice(item) * item.quantity);
                   }
                   return sum;

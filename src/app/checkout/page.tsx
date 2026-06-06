@@ -790,13 +790,11 @@ export default function CheckoutPage() {
     const afterDiscount = Math.max(0, afterWholesaleDiscount - couponDiscount)
     const shippingFee = shippingMethod === "pickup" ? 0 : 10
 
-    // Calculate 10% GST only for items in Packaging or Ancillaries
+    // Calculate 10% GST only for items NOT marked as GST free
     let taxableAmount = 0;
-    const taxableCategories = ["packaging", "ancillaries"];
 
     items.forEach(item => {
-      const category = item.category?.toLowerCase().trim() || "";
-      if (taxableCategories.includes(category)) {
+      if (!item.gst_free) {
         taxableAmount += getItemPrice(item) * item.quantity;
       }
     });
@@ -806,7 +804,8 @@ export default function CheckoutPage() {
       taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
     }
 
-    const gst = taxableAmount * 0.1
+    // Delivery fee is always taxable
+    const gst = (taxableAmount + shippingFee) * 0.1
     const total = afterDiscount + shippingFee
 
     return {
@@ -857,6 +856,7 @@ export default function CheckoutPage() {
         quantity: 1,
         options: [],
         category: product.categories && product.categories.length > 0 ? product.categories[0].category_name : undefined,
+        gst_free: product.categories && product.categories.length > 0 ? product.categories.some((cat: any) => cat.gst_free) : false,
       }
 
       addItem(productToAdd)
@@ -1197,13 +1197,11 @@ export default function CheckoutPage() {
 
     const afterDiscount = Math.max(0, afterWholesaleDiscount - couponDiscount)
 
-    // Calculate 10% GST only for items in Packaging or Ancillaries
+    // Calculate 10% GST only for items NOT marked as GST free
     let taxableAmountGroup = 0;
-    const taxableCategories = ["packaging", "ancillaries"];
 
     groupItems.forEach(item => {
-      const category = item.category?.toLowerCase().trim() || "";
-      if (taxableCategories.includes(category)) {
+      if (!item.gst_free) {
         taxableAmountGroup += getItemPrice(item) * item.quantity;
       }
     });
@@ -1213,7 +1211,8 @@ export default function CheckoutPage() {
       taxableAmountGroup = taxableAmountGroup * (1 - (couponDiscount / subtotal));
     }
 
-    const gst = taxableAmountGroup * 0.1
+    // Delivery fee is always taxable
+    const gst = (taxableAmountGroup + shippingFee) * 0.1
     const total = afterDiscount + shippingFee
 
     return {

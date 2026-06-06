@@ -26,6 +26,7 @@ interface CartItem {
   options?: ProductOption[]
   subscription?: SubscriptionOptions
   category?: string
+  gst_free?: boolean
   cart_item_id?: string // Unique ID for items with different options
 }
 

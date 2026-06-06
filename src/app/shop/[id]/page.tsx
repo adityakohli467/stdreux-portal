@@ -441,6 +441,7 @@ export default function ProductDetailPage({
         startDate: deliveryStartDate,
       } : undefined,
       category: product.categories && product.categories.length > 0 ? product.categories[0].category_name : undefined,
+      gst_free: product.categories && product.categories.length > 0 ? product.categories.some((cat: any) => cat.gst_free) : false,
     });
     toast.success(`${product.product_name} added to cart`);
   };
