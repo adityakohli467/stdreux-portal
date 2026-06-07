@@ -399,6 +399,7 @@ function AccountContent() {
           quantity: product.quantity || 1,
           product_image: product.product_image || "",
           options: finalOptions,
+          gst_free: product.categories?.some((cat: any) => cat.gst_free) || false,
           subscription: {
             frequency: freqString,
             startDate: startDateStr,

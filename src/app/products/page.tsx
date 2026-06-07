@@ -119,6 +119,7 @@ export default function ProductsPage() {
       product_name: product.product_name,
       product_price: priceToUse,
       product_image: getProductImageUrl(product),
+      gst_free: (product as any).categories?.some((cat: any) => cat.gst_free) || false,
     });
     toast.success(`${product.product_name} added to cart`);
   };
