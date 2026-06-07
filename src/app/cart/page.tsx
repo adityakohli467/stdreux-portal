@@ -331,12 +331,15 @@ export default function CartPage() {
                   }
                   return sum;
                 }, 0);
-                const gst = taxableAmount * 0.1;
+                const deliveryFee = 10;
+                const gst = (taxableAmount + deliveryFee) * 0.1;
+                const customerType = customer?.customer_type || '';
+                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
 
                 if (gst > 0) {
                   return (
                     <div className="flex justify-between text-sm text-gray-500">
-                      <span>GST (Incl.)</span>
+                      <span>GST {isWholesaleCustomer ? '(Excl.)' : '(Incl.)'}</span>
                       <span className="font-medium">${gst.toFixed(2)}</span>
                     </div>
                   );
@@ -346,7 +349,19 @@ export default function CartPage() {
               <div className="border-t pt-4">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span className="text-primary">${(getTotalPrice() + 10.00).toFixed(2)}</span>
+                  <span className="text-primary">${(() => {
+                    const customerType = customer?.customer_type || '';
+                    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+                    const subtotal = getTotalPrice();
+                    const deliveryFee = 10;
+                    const taxableAmount = items.reduce((sum, item) => {
+                      if (!item.gst_free) return sum + (getItemPrice(item) * item.quantity);
+                      return sum;
+                    }, 0);
+                    const gst = (taxableAmount + deliveryFee) * 0.1;
+                    const total = isWholesaleCustomer ? subtotal + deliveryFee + gst : subtotal + deliveryFee;
+                    return total.toFixed(2);
+                  })()}</span>
                 </div>
               </div>
 

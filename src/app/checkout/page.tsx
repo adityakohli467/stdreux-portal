@@ -806,7 +806,14 @@ export default function CheckoutPage() {
 
     // Delivery fee is always taxable
     const gst = (taxableAmount + shippingFee) * 0.1
-    const total = afterDiscount + shippingFee
+
+    // Wholesale: GST is exclusive (added to total)
+    // Retail: GST is inclusive (already in the price, not added to total)
+    const customerType = customer?.customer_type || ''
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const total = isWholesaleCustomer
+      ? afterDiscount + shippingFee + gst
+      : afterDiscount + shippingFee
 
     return {
       subtotal,
@@ -1213,7 +1220,14 @@ export default function CheckoutPage() {
 
     // Delivery fee is always taxable
     const gst = (taxableAmountGroup + shippingFee) * 0.1
-    const total = afterDiscount + shippingFee
+
+    // Wholesale: GST is exclusive (added to total)
+    // Retail: GST is inclusive (already in the price, not added to total)
+    const customerType = customer?.customer_type || ''
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const total = isWholesaleCustomer
+      ? afterDiscount + shippingFee + gst
+      : afterDiscount + shippingFee
 
     return {
       subtotal,

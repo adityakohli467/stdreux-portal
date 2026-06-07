@@ -45,7 +45,7 @@ export default function InvoicePage() {
     const searchParams = useSearchParams()
     const orderId = params?.id as string
     const authParam = searchParams.get("auth")
-    const { isAuthenticated, checkAuth, token } = useAuthStore()
+    const { isAuthenticated, checkAuth, token, customer } = useAuthStore()
     const [order, setOrder] = useState<Order | null>(null)
     const [loading, setLoading] = useState(true)
 
@@ -270,7 +270,23 @@ export default function InvoicePage() {
                                 const wholesaleDiscount = parseFloat(order.wholesale_discount || "0");
                                 const couponDiscount = parseFloat(order.coupon_discount || "0");
                                 const afterDiscount = Math.max(0, subtotal - wholesaleDiscount - couponDiscount);
-                                const totalAmount = afterDiscount + shipping;
+                                const customerType = customer?.customer_type || '';
+                                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+
+                                // Calculate GST for total
+                                let taxableAmount = 0;
+                                order.items?.forEach(item => {
+                                    if (!item.gst_free) {
+                                        taxableAmount += parseFloat(item.total);
+                                    }
+                                });
+                                if (couponDiscount > 0 && subtotal > 0) {
+                                    taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
+                                }
+                                const gstAmount = (taxableAmount + shipping) * 0.1;
+                                const totalAmount = isWholesaleCustomer
+                                    ? afterDiscount + shipping + gstAmount
+                                    : afterDiscount + shipping;
 
                                 return (
                                     <div className="w-full sm:w-80 space-y-3">
@@ -322,7 +338,7 @@ export default function InvoicePage() {
                                             if (gstAmount > 0) {
                                                 return (
                                                     <div className="flex justify-between text-xs text-gray-500 italic">
-                                                        <span>Includes GST (10% on taxable items)</span>
+                                                        <span>{isWholesaleCustomer ? 'GST (10% on taxable items)' : 'Includes GST (10% on taxable items)'}</span>
                                                         <span>${gstAmount.toFixed(2)}</span>
                                                     </div>
                                                 );

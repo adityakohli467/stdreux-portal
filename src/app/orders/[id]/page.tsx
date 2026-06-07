@@ -53,7 +53,7 @@ export default function OrderDetailPage() {
   const router = useRouter()
   const params = useParams()
   const orderId = params?.id as string
-  const { isAuthenticated, checkAuth } = useAuthStore()
+  const { isAuthenticated, checkAuth, customer } = useAuthStore()
   const [order, setOrder] = useState<Order | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -429,9 +429,11 @@ export default function OrderDetailPage() {
                   const gstAmount = taxableAmount * 0.1;
 
                   if (gstAmount > 0) {
+                    const customerType = customer?.customer_type || '';
+                    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
                     return (
                       <div className="flex justify-between text-xs text-gray-500">
-                        <span>GST (Incl.)</span>
+                        <span>GST {isWholesaleCustomer ? '(Excl.)' : '(Incl.)'}</span>
                         <span>${gstAmount.toFixed(2)}</span>
                       </div>
                     );
