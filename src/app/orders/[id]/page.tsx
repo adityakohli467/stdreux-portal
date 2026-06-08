@@ -17,6 +17,7 @@ interface OrderItem {
   price: string
   total: string
   category?: string
+  gst_free?: boolean
   options?: Array<{
     option_name: string
     option_value: string

@@ -16,6 +16,7 @@ interface OrderItem {
     price: string
     total: string
     category?: string
+    gst_free?: boolean
 }
 
 interface Order {
