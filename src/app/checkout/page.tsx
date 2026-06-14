@@ -809,7 +809,7 @@ export default function CheckoutPage() {
     // Delivery fee is always taxable
     // GST is always taxableAmount / 11
     const customerType = customer?.customer_type || ''
-    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
     const gst = (taxableAmount + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)
@@ -1224,7 +1224,7 @@ export default function CheckoutPage() {
     // Delivery fee is always taxable
     // GST is always taxableAmount / 11
     const customerType = customer?.customer_type || ''
-    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
     const gst = (taxableAmountGroup + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)

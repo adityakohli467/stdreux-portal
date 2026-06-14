@@ -272,7 +272,7 @@ export default function InvoicePage() {
                                 const couponDiscount = parseFloat(order.coupon_discount || "0");
                                 const afterDiscount = Math.max(0, subtotal - wholesaleDiscount - couponDiscount);
                                 const customerType = customer?.customer_type || '';
-                                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+                                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type;
 
                                 // Calculate GST for total
                                 let taxableAmount = 0;

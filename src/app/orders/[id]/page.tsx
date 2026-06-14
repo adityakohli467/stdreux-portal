@@ -415,7 +415,7 @@ export default function OrderDetailPage() {
                   const subtotal = parseFloat(order.subtotal || order.order_total || '0');
                   const couponDiscount = parseFloat(order.coupon_discount || '0');
                   const customerType = customer?.customer_type || '';
-                  const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+                  const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type;
 
                   let taxableAmount = 0;
                   order.items?.forEach(item => {

@@ -238,7 +238,7 @@ export default function CartPage() {
                           {(() => {
                             const product = productsData[item.product_id];
                             const customerType = customer?.customer_type || '';
-                            const isWholesale = customerType && (customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null);
+                            const isWholesale = customerType && (customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type);
                             
                             let strikePrice = 0;
                             if (product && isWholesale) {
@@ -338,7 +338,7 @@ export default function CartPage() {
                 }, 0);
                 const deliveryFee = 10;
                 const customerType = customer?.customer_type || '';
-                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+                const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type;
                 // GST is always taxableAmount / 11
                 const gst = (taxableAmount + deliveryFee) / 11;
 
@@ -357,7 +357,7 @@ export default function CartPage() {
                   <span>Total</span>
                   <span className="text-primary">${(() => {
                     const customerType = customer?.customer_type || '';
-                    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
+                    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type;
                     const subtotal = getTotalPrice();
                     const deliveryFee = 10;
                     const taxableAmount = items.reduce((sum, item) => {
