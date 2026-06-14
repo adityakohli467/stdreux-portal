@@ -380,6 +380,9 @@ export const useAuthStore = create<AuthState>()(
           localStorage.removeItem("google_user_data");
           localStorage.removeItem("last_registration_type");
           localStorage.removeItem("last_wholesale_type");
+          // Clear checkout form data from session storage
+          sessionStorage.removeItem("checkout_billing");
+          sessionStorage.removeItem("checkout_shipping");
         }
       },
 
