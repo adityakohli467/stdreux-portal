@@ -582,13 +582,15 @@ export default function CheckoutPage() {
             return itemOption
           })
 
-          // 3. Update the item in the store
+          // 3. Update the item in the store (including gst_free from categories)
           const cartStore = useCartStore.getState()
           if (cartStore.updateCartItem) {
             const cartItemId = item.cart_item_id || generateCartItemId(item.product_id, item.options, item.subscription)
+            const isGstFree = product.categories?.some((cat: any) => cat.gst_free) || false
             cartStore.updateCartItem(cartItemId, {
               product_price: finalBasePrice.toString(),
-              options: newOptions
+              options: newOptions,
+              gst_free: isGstFree,
             })
           }
         })

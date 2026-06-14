@@ -121,9 +121,11 @@ export default function CartPage() {
           const cartStore = useCartStore.getState()
           if (cartStore.updateCartItem) {
              const cartItemId = item.cart_item_id || generateCartItemId(item.product_id, item.options, item.subscription)
+             const isGstFree = product.categories?.some((cat: any) => cat.gst_free) || false
              cartStore.updateCartItem(cartItemId, {
                product_price: finalBasePrice.toString(),
-               options: newOptions
+               options: newOptions,
+               gst_free: isGstFree,
              })
           }
         })
@@ -326,7 +328,10 @@ export default function CartPage() {
               </div>
               {(() => {
                 const taxableAmount = items.reduce((sum, item) => {
-                  if (!item.gst_free) {
+                  // Check gst_free from fetched product categories (most reliable), fallback to stored flag
+                  const productData = productsData[item.product_id];
+                  const isGstFree = productData?.categories?.some((cat: any) => cat.gst_free) || item.gst_free;
+                  if (!isGstFree) {
                     return sum + (getItemPrice(item) * item.quantity);
                   }
                   return sum;
@@ -358,7 +363,9 @@ export default function CartPage() {
                     const subtotal = getTotalPrice();
                     const deliveryFee = 10;
                     const taxableAmount = items.reduce((sum, item) => {
-                      if (!item.gst_free) return sum + (getItemPrice(item) * item.quantity);
+                      const productData = productsData[item.product_id];
+                      const isGstFree = productData?.categories?.some((cat: any) => cat.gst_free) || item.gst_free;
+                      if (!isGstFree) return sum + (getItemPrice(item) * item.quantity);
                       return sum;
                     }, 0);
                     const gst = isWholesaleCustomer ? (taxableAmount + deliveryFee) * 0.1 : 0;
