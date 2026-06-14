@@ -805,12 +805,16 @@ export default function CheckoutPage() {
     }
 
     // Delivery fee is always taxable
-    const gst = (taxableAmount + shippingFee) * 0.1
+    // Retail: GST inclusive - extract GST as amount/11
+    // Wholesale: GST exclusive - calculate as amount * 10%
+    const customerType = customer?.customer_type || ''
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const gst = isWholesaleCustomer
+      ? (taxableAmount + shippingFee) * 0.1
+      : (taxableAmount + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)
     // Retail: GST is inclusive (already in the price, not added to total)
-    const customerType = customer?.customer_type || ''
-    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
     const total = isWholesaleCustomer
       ? afterDiscount + shippingFee + gst
       : afterDiscount + shippingFee
@@ -1219,12 +1223,16 @@ export default function CheckoutPage() {
     }
 
     // Delivery fee is always taxable
-    const gst = (taxableAmountGroup + shippingFee) * 0.1
+    // Retail: GST inclusive - extract GST as amount/11
+    // Wholesale: GST exclusive - calculate as amount * 10%
+    const customerType = customer?.customer_type || ''
+    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
+    const gst = isWholesaleCustomer
+      ? (taxableAmountGroup + shippingFee) * 0.1
+      : (taxableAmountGroup + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)
     // Retail: GST is inclusive (already in the price, not added to total)
-    const customerType = customer?.customer_type || ''
-    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
     const total = isWholesaleCustomer
       ? afterDiscount + shippingFee + gst
       : afterDiscount + shippingFee

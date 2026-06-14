@@ -414,6 +414,8 @@ export default function OrderDetailPage() {
                 {(() => {
                   const subtotal = parseFloat(order.subtotal || order.order_total || '0');
                   const couponDiscount = parseFloat(order.coupon_discount || '0');
+                  const customerType = customer?.customer_type || '';
+                  const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
 
                   let taxableAmount = 0;
                   order.items?.forEach(item => {
@@ -427,11 +429,11 @@ export default function OrderDetailPage() {
                     taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
                   }
 
-                  const gstAmount = taxableAmount * 0.1;
+                  const gstAmount = isWholesaleCustomer
+                    ? taxableAmount * 0.1
+                    : taxableAmount / 11;
 
                   if (gstAmount > 0) {
-                    const customerType = customer?.customer_type || '';
-                    const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null;
                     return (
                       <div className="flex justify-between text-xs text-gray-500">
                         <span>GST {isWholesaleCustomer ? '(Excl.)' : '(Incl.)'}</span>
