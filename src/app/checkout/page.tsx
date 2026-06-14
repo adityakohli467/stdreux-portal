@@ -1982,7 +1982,7 @@ export default function CheckoutPage() {
                       </div>
                       {totals.gst > 0 && (
                         <div className="flex justify-between text-xs text-gray-500">
-                          <span>GST (Incl.)</span>
+                          <span>GST</span>
                           <span>${totals.gst.toFixed(2)}</span>
                         </div>
                       )}

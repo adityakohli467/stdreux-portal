@@ -345,7 +345,7 @@ export default function CartPage() {
                 if (gst > 0) {
                   return (
                     <div className="flex justify-between text-sm text-gray-500">
-                      <span>GST {isWholesaleCustomer ? '(Excl.)' : '(Incl.)'}</span>
+                      <span>GST</span>
                       <span className="font-medium">${gst.toFixed(2)}</span>
                     </div>
                   );

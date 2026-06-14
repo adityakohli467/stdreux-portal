@@ -434,7 +434,7 @@ export default function OrderDetailPage() {
                   if (gstAmount > 0) {
                     return (
                       <div className="flex justify-between text-xs text-gray-500">
-                        <span>GST {isWholesaleCustomer ? '(Excl.)' : '(Incl.)'}</span>
+                        <span>GST</span>
                         <span>${gstAmount.toFixed(2)}</span>
                       </div>
                     );
