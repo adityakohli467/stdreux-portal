@@ -807,13 +807,10 @@ export default function CheckoutPage() {
     }
 
     // Delivery fee is always taxable
-    // Retail: GST inclusive - extract GST as amount/11
-    // Wholesale: GST exclusive - calculate as amount * 10%
+    // GST is always taxableAmount / 11
     const customerType = customer?.customer_type || ''
     const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
-    const gst = isWholesaleCustomer
-      ? (taxableAmount + shippingFee) * 0.1
-      : (taxableAmount + shippingFee) / 11
+    const gst = (taxableAmount + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)
     // Retail: GST is inclusive (already in the price, not added to total)
@@ -1225,13 +1222,10 @@ export default function CheckoutPage() {
     }
 
     // Delivery fee is always taxable
-    // Retail: GST inclusive - extract GST as amount/11
-    // Wholesale: GST exclusive - calculate as amount * 10%
+    // GST is always taxableAmount / 11
     const customerType = customer?.customer_type || ''
     const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || customer?.wholesale_type !== null
-    const gst = isWholesaleCustomer
-      ? (taxableAmountGroup + shippingFee) * 0.1
-      : (taxableAmountGroup + shippingFee) / 11
+    const gst = (taxableAmountGroup + shippingFee) / 11
 
     // Wholesale: GST is exclusive (added to total)
     // Retail: GST is inclusive (already in the price, not added to total)

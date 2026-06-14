@@ -284,9 +284,7 @@ export default function InvoicePage() {
                                 if (couponDiscount > 0 && subtotal > 0) {
                                     taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
                                 }
-                                const gstAmount = isWholesaleCustomer
-                                    ? (taxableAmount + shipping) * 0.1
-                                    : (taxableAmount + shipping) / 11;
+                                const gstAmount = (taxableAmount + shipping) / 11;
                                 const totalAmount = isWholesaleCustomer
                                     ? afterDiscount + shipping + gstAmount
                                     : afterDiscount + shipping;
