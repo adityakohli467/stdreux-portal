@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { api } from "@/lib/api";
+import { useCartStore } from "./cart";
 
 interface User {
   user_id: number;
@@ -369,6 +370,9 @@ export const useAuthStore = create<AuthState>()(
           isAuthenticated: false,
           isLoading: false,
         });
+
+        // Clear cart on logout
+        useCartStore.getState().clearCart();
 
         if (typeof document !== "undefined") {
           document.cookie =
