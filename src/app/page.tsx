@@ -531,36 +531,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Mission Statement */}
+      {/* Icons Below Banner */}
       <section
-        className="relative w-screen py-16 bg-white"
+        className="w-screen"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
         }}
       >
-        <div className="absolute inset-0">
-          <Image
-            src="/assets/sndurex/Frame 729.png"
-            alt="Coffee Beans"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        <div className="relative container mx-auto px-6 text-center max-w-4xl z-10">
-          <p className="text-white leading-relaxed text-lg">
-            At St Dreux Coffee, authenticity drives every moment we share.
-            Whether it&#39;s your pick-me-up or laid-back treat, we recognize
-            that a cup is more than just something to sip. It&#39;s our mission
-            to bring together brewers, baristas, and coffee-lovers to create
-            something truly special.
-          </p>
-          <p className="text-white mt-4 italic text-lg">
-            Every bean matters <span className="inline-block">—</span> to our
-            community, one story, one shared enjoyment.
-          </p>
-        </div>
+        <Image
+          src="/assets/images/icons-below-banner.png"
+          alt="St. Dreux Coffee Features"
+          width={1920}
+          height={200}
+          className="w-full h-auto object-cover"
+        />
       </section>
 
       {/* Coffee Blends Section */}
