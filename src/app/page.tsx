@@ -497,36 +497,46 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full overflow-x-hidden bg-[#f5f5f0]">
       {/* Hero Section */}
-      <section className="relative h-[600px] sm:h-[700px] md:h-[800px] bg-black">
+      <section className="relative h-[500px] sm:h-[600px] md:h-[700px] bg-[#0d1a2e]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/sndurex/Wireframe - 14 (3).png"
-            alt="St. Dreux Coffee"
+            src="/assets/images/hero-banner.jpeg"
+            alt="St. Dreux Coffee - Coffee Roasted With Purpose"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
         </div>
         <div className="relative container mx-auto px-6 h-full flex items-center">
-          <div className="max-w-2xl text-white">
-            <p className="text-lg sm:text-xl mb-2 font-light italic">
-              Crafted with love.
+          <div className="max-w-lg">
+            <p className="text-xs sm:text-sm tracking-[0.2em] text-amber-400 uppercase mb-4 font-semibold">
+              Roasted In Australia
             </p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
-              Served with purpose.
+            <div className="w-8 h-0.5 bg-amber-400 mb-6"></div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight" style={{ fontFamily: 'serif' }}>
+              Coffee Roasted<br />With Purpose.
             </h1>
-            <p className="text-lg sm:text-xl mb-8 text-white/90">
-              Crafted with passion, enjoyed in every sip. Taste the difference.
+            <p className="text-sm sm:text-base mb-8 text-white/80 leading-relaxed max-w-sm">
+              Specialty coffee sourced from exceptional origins and roasted in Australia for cafés, hospitality venues, and coffee lovers.
             </p>
-            <Link href="/shop">
-              <Button
-                size="lg"
-                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-6 text-lg"
-              >
-                Order Now
-              </Button>
-            </Link>
+            <div className="flex gap-4">
+              <Link href="/auth/register">
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm bg-transparent"
+                >
+                  Register
+                </Button>
+              </Link>
+              <Link href="/shop">
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm bg-transparent"
+                >
+                  Explore Coffee
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
