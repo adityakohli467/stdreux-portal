@@ -655,7 +655,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Tea Products Section */}
+      {/* Tea Products Section - Commented Out
       <section className="py-16 bg-[#F5F5F0]">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
@@ -744,6 +744,7 @@ export default function HomePage() {
           )}
         </div>
       </section>
+      */}
 
       {/* Our Story Section */}
       <section
