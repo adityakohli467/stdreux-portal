@@ -745,6 +745,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Story Section */}
+      <section
+        className="w-screen py-16"
+        style={{
+          backgroundColor: "#f5f0eb",
+          marginLeft: "calc(50% - 50vw)",
+          marginRight: "calc(50% - 50vw)",
+        }}
+      >
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.2em] text-gray-600 uppercase mb-3">Our Story</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44] mb-6">
+                More Than Coffee
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                At the heart of St Dreux Coffee is Ernest Igual, bringing decades of industry experience, roasting expertise, and a deep passion for specialty coffee. As a certified Q Grader, one of the coffee industry&#39;s most respected qualifications, Ernest has built strong relationships across the coffee supply chain with a focus on quality sourcing, transparency, and education.
+              </p>
+              <Link href="https://stdreux.com.au/about">
+                <Button className="bg-[#0d1a44] hover:bg-[#1a2d5a] text-white px-8 py-3 text-sm tracking-[0.1em] uppercase font-semibold rounded-sm">
+                  Our Story
+                </Button>
+              </Link>
+            </div>
+            <div className="relative h-72 lg:h-[350px] rounded-lg overflow-hidden">
+              <Image
+                src="/assets/images/our-story.jpeg"
+                alt="Our Story - Ernest Igual"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Coffee Origins Map */}
       <section
         className="w-screen"
