@@ -506,7 +506,7 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative container mx-auto px-6 h-full flex items-center">
           <div className="max-w-lg">
