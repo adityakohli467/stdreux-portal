@@ -138,7 +138,7 @@ export function Footer() {
                 </a>
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com/stdreuxcoffee"
+                  href="https://www.instagram.com/stdreuxau"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-white/80 transition-colors"
