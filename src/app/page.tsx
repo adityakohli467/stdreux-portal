@@ -566,16 +566,14 @@ export default function HomePage() {
       {/* Coffee Blends Section */}
       <section className="py-16 bg-[#F5F5F0]">
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900">
-                Discover Our Coffee
-              </h2>
-              <p className="text-gray-600 mt-2">
-                Explore a collection of expertly roasted coffees, sourced from renowned growing regions and crafted to deliver consistency, character and exceptional flavour in every cup
-              </p>
-            </div>
-            <Link href="/shop">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold text-gray-900">
+              DISCOVER OUR COFFEE
+            </h2>
+            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+              Explore a collection of expertly roasted coffees, sourced from renowned growing regions and crafted to deliver consistency, character and exceptional flavour in every cup
+            </p>
+            <Link href="/shop" className="inline-block mt-4">
               <Button
                 className="bg-[#105a9c] hover:bg-[#0d4a82] text-white"
               >
