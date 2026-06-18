@@ -63,6 +63,7 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div className="lg:w-[18%] lg:pl-[50px]">
+            <h4 className="font-semibold mb-2 text-base text-white">Quick Links</h4>
             <ul className="space-y-1.5">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
@@ -105,7 +106,7 @@ export function Footer() {
           {/* Contact Info & Social */}
           <div className="lg:w-[25%]">
             <h4 className="font-semibold mb-2 text-base text-white">Contact Us</h4>
-            <div className="space-y-2 text-sm mb-6">
+            <div className="space-y-3.5 text-sm mb-6">
               <p className="text-white/70 flex items-center gap-2">
                 <Mail className="w-4 h-4 shrink-0" />
                 contact@stdreux.com.au
@@ -121,7 +122,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-base text-white">Follow us</h4>
+              <h4 className="font-semibold mb-4 text-base text-white">Follow Us</h4>
               <div className="flex gap-3 items-center">
                 {/* Facebook */}
                 <a
@@ -165,7 +166,7 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="lg:w-[40%]">
-            <h4 className="font-semibold mb-4 text-base text-white">Sign up for our Newsletter</h4>
+            <h4 className="font-semibold mb-4 text-base text-white">Sign Up for Our Newsletter</h4>
             <form onSubmit={handleNewsletterSubmit} className="w-full max-w-sm">
               <div className="flex items-center rounded-full bg-white pl-1 pr-1 py-1">
                 <input
