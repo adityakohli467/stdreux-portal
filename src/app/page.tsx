@@ -767,7 +767,7 @@ export default function HomePage() {
                 At the heart of St Dreux Coffee is Ernest Igual, bringing decades of industry experience, roasting expertise, and a deep passion for specialty coffee. As a certified Q Grader, one of the coffee industry&#39;s most respected qualifications, Ernest has built strong relationships across the coffee supply chain with a focus on quality sourcing, transparency, and education.
               </p>
               <Link href="https://stdreux.com.au/about">
-                <Button className="bg-[#0d1a44] hover:bg-[#1a2d5a] text-white px-8 py-3 text-sm tracking-[0.1em] uppercase font-semibold rounded-sm">
+                <Button className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-3 text-sm tracking-[0.1em] uppercase font-semibold rounded-sm">
                   Our Story
                 </Button>
               </Link>
