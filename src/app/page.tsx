@@ -877,7 +877,7 @@ export default function HomePage() {
               {reviews.map((review) => (
                 <Card key={review.review_id} className="relative bg-white rounded-xl shadow-sm border-0">
                   <CardContent className="pt-10 pb-6 px-6">
-                    <div className="text-amber-400 font-serif leading-none mb-4" style={{ fontSize: '100px', lineHeight: '60px' }}>
+                    <div className="text-amber-400 font-serif leading-none mb-1" style={{ fontSize: '100px', lineHeight: '60px' }}>
                       &#8220;
                     </div>
                     <p className="text-gray-600 mb-6 leading-relaxed text-sm">
