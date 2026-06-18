@@ -44,7 +44,50 @@ export function Footer() {
   }
 
   return (
-    <footer className="text-white relative" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <>
+      {/* Instagram Section */}
+      <section className="bg-white py-8">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            {/* Left - Follow CTA */}
+            <div className="lg:w-[20%] text-center lg:text-left">
+              <p className="text-xs font-semibold tracking-widest text-gray-600 mb-1">FOLLOW THE JOURNEY</p>
+              <p className="text-xl font-bold text-[#0d1a44] mb-3">@stdreuxau</p>
+              <a
+                href="https://www.instagram.com/stdreuxau"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#105a9c] text-white text-xs font-semibold tracking-wider px-6 py-2.5 rounded-sm hover:bg-[#0d4a82] transition-colors"
+              >
+                FOLLOW US
+              </a>
+            </div>
+            {/* Right - Image Grid */}
+            <div className="lg:w-[80%] grid grid-cols-3 md:grid-cols-6 gap-2">
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Rectangle 180.png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Rectangle 180 (1).png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Rectangle 181.png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Rectangle 182.png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Rectangle 183.png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-sm">
+                <Image src="/assets/sndurex/Image (26).png" alt="" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="text-white relative" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 mb-12">
           {/* Logo and Brand */}
@@ -198,5 +241,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   )
 }
