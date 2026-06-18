@@ -568,19 +568,16 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-sm text-gray-500 mb-2">Featured</p>
               <h2 className="text-4xl font-bold text-gray-900">
-                Featured Products
+                DISCOVER OUR COFFEE
               </h2>
               <p className="text-gray-600 mt-2">
-                Arabica beans from around the world that tastes unbelievably
-                good
+                Explore a collection of expertly roasted coffees, sourced from renowned growing regions and crafted to deliver consistency, character and exceptional flavour in every cup
               </p>
             </div>
             <Link href="/shop">
               <Button
-                variant="outline"
-                className="border-[#105a9c] text-[#105a9c] hover:bg-[#105a9c] hover:text-white"
+                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white"
               >
                 View more
               </Button>
