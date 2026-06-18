@@ -567,7 +567,7 @@ export default function HomePage() {
       </section>
 
       {/* Coffee Blends Section */}
-      <section className="pt-6 sm:pt-16 pb-16 bg-[#F5F5F0]">
+      <section className="pt-4 sm:pt-8 pb-16 bg-[#F5F5F0]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-gray-900">
@@ -838,7 +838,7 @@ export default function HomePage() {
                 Partnering with cafés, restaurants, hotels and workplaces to deliver exceptional coffee experiences through premium roasted beans, reliable supply and industry expertise.
               </p>
 
-              <div className="grid grid-cols-4 gap-4 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                 <div className="flex flex-col items-center text-center gap-2">
                   <Image src="/assets/images/icon_wholesale_supply.png" alt="Wholesale Supply" width={52} height={52} className="object-contain" />
                   <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Wholesale Supply</span>
