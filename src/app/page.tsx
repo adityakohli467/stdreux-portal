@@ -568,18 +568,14 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-gray-900">
-              Discover Our Coffee
+              Discover our{" "}
+              <span className="italic text-[#105a9c]" style={{ fontFamily: "cursive" }}>
+                Coffee
+              </span>
             </h2>
-            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+            <p className="text-gray-600 mt-2 max-w-4xl mx-auto">
               Explore a collection of expertly roasted coffees, sourced from renowned growing regions and crafted to deliver consistency, character and exceptional flavour in every cup
             </p>
-            <Link href="/shop" className="inline-block mt-4">
-              <Button
-                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white"
-              >
-                View more
-              </Button>
-            </Link>
           </div>
 
           {loading ? (
@@ -647,6 +643,16 @@ export default function HomePage() {
               </Button>
             </div>
           )}
+
+          <div className="text-center mt-8">
+            <Link href="/shop">
+              <Button
+                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8"
+              >
+                View more
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
