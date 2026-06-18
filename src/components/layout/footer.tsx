@@ -3,8 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { api } from "@/lib/api"
 import { toast } from "sonner"
 
@@ -45,37 +43,17 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#0b1a2e] text-white relative overflow-hidden">
-      {/* Watermark Background */}
-      <div className="absolute right-0 bottom-0 w-[300px] h-[300px] md:w-[400px] md:h-[400px] opacity-[0.08] pointer-events-none">
-        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <circle cx="100" cy="100" r="95" stroke="white" strokeWidth="2"/>
-          <circle cx="100" cy="100" r="80" stroke="white" strokeWidth="1.5"/>
-          {/* Face outline */}
-          <ellipse cx="100" cy="95" rx="45" ry="55" stroke="white" strokeWidth="1.5"/>
-          {/* Eyes */}
-          <circle cx="85" cy="85" r="4" fill="white"/>
-          <circle cx="115" cy="85" r="4" fill="white"/>
-          {/* Nose */}
-          <path d="M97 95 Q100 105 103 95" stroke="white" strokeWidth="1.5" fill="none"/>
-          {/* Mouth */}
-          <path d="M88 110 Q100 120 112 110" stroke="white" strokeWidth="1.5" fill="none"/>
-          {/* Hair/decorative lines */}
-          <path d="M70 60 Q85 45 100 50 Q115 45 130 60" stroke="white" strokeWidth="1.5" fill="none"/>
-          <path d="M65 70 Q80 55 100 58 Q120 55 135 70" stroke="white" strokeWidth="1" fill="none"/>
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-6 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
+    <footer className="bg-[#0b1a2e] text-white">
+      <div className="container mx-auto px-6 py-12">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 mb-12">
           {/* Logo and Brand */}
-          <div className="lg:col-span-2">
+          <div className="lg:w-[15%]">
             <div className="mb-2">
               <Image
                 src="/assets/images/logo.png"
                 alt="St. Dreux Coffee"
-                width={180}
-                height={45}
+                width={160}
+                height={40}
                 className="object-contain"
               />
             </div>
@@ -83,40 +61,40 @@ export function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div className="lg:col-span-2">
-            <ul className="space-y-2">
+          <div className="lg:w-[20%]">
+            <ul className="space-y-1.5">
               <li>
-                <Link href="/" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/shop" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/shop" className="text-white/70 hover:text-white transition-colors text-sm">
                   Shop
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/about" className="text-white/70 hover:text-white transition-colors text-sm">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/shop?purchaseType=subscription" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/shop?purchaseType=subscription" className="text-white/70 hover:text-white transition-colors text-sm">
                   Subscriptions
                 </Link>
               </li>
               <li>
-                <Link href="/wholesale-info" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/wholesale-info" className="text-white/70 hover:text-white transition-colors text-sm">
                   Wholesale Partner
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-white/80 hover:text-white transition-colors text-sm">
-                  Terms & Conditions
+                <Link href="/terms" className="text-white/70 hover:text-white transition-colors text-sm">
+                  Terms &amp; Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-white/80 hover:text-white transition-colors text-sm">
+                <Link href="/privacy" className="text-white/70 hover:text-white transition-colors text-sm">
                   Privacy Policy
                 </Link>
               </li>
@@ -124,15 +102,15 @@ export function Footer() {
           </div>
 
           {/* Contact Info & Social */}
-          <div className="lg:col-span-3">
-            <ul className="space-y-2 text-sm mb-6">
-              <li className="text-white/80">contact@stdreux.com.au</li>
-              <li className="text-white/80">+61 246117229</li>
-            </ul>
+          <div className="lg:w-[25%]">
+            <div className="space-y-1.5 text-sm mb-6">
+              <p className="text-white/70">contact@stdreux.com.au</p>
+              <p className="text-white/70">+61 246117229</p>
+            </div>
 
             <div>
-              <h4 className="font-semibold mb-3 text-sm">Follow us</h4>
-              <div className="flex gap-4 items-center">
+              <h4 className="font-semibold mb-2 text-sm text-white">Follow us</h4>
+              <div className="flex gap-3 items-center">
                 {/* Facebook */}
                 <a
                   href="https://facebook.com/stdreuxcoffee"
@@ -174,25 +152,23 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-5">
-            <h4 className="text-base font-semibold mb-4" style={{ fontFamily: 'Albert Sans' }}>Sign up for our Newsletter</h4>
-            <form onSubmit={handleNewsletterSubmit} className="flex w-full max-w-md">
-              <div className="flex w-full rounded-full border border-white/30 bg-white/5 overflow-hidden">
+          <div className="lg:w-[40%]">
+            <h4 className="text-base font-semibold mb-4 text-white">Sign up for our Newsletter</h4>
+            <form onSubmit={handleNewsletterSubmit} className="w-full max-w-sm">
+              <div className="flex items-center rounded-full border border-white/30 bg-white/5 pl-5 pr-1 py-1">
                 <input
                   type="email"
                   placeholder="Enter Email Address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
-                  className="flex-1 bg-transparent text-white placeholder:text-white/50 px-5 py-3 text-sm outline-none disabled:opacity-50"
+                  className="flex-1 bg-transparent text-white placeholder:text-white/40 text-sm outline-none disabled:opacity-50 min-w-0"
                   required
-                  style={{ fontFamily: 'Albert Sans' }}
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 text-sm font-semibold rounded-full m-1 transition-colors disabled:opacity-50 whitespace-nowrap"
-                  style={{ fontFamily: 'Albert Sans' }}
+                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-2.5 text-sm font-semibold rounded-full transition-colors disabled:opacity-50 whitespace-nowrap ml-2 shrink-0"
                 >
                   {loading ? "..." : "Submit"}
                 </button>
