@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { Mail, Phone, MapPin } from "lucide-react"
 import { api } from "@/lib/api"
 import { toast } from "sonner"
 
@@ -47,7 +48,7 @@ export function Footer() {
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 mb-12">
           {/* Logo and Brand */}
-          <div className="lg:w-[15%]">
+          <div className="lg:w-[18%]">
             <div className="mb-2">
               <Image
                 src="/assets/images/logo.png"
@@ -61,7 +62,7 @@ export function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div className="lg:w-[20%]">
+          <div className="lg:w-[18%]">
             <ul className="space-y-1.5">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
@@ -104,9 +105,19 @@ export function Footer() {
           {/* Contact Info & Social */}
           <div className="lg:w-[25%]">
             <h4 className="font-semibold mb-2 text-base text-white">Contact Us</h4>
-            <div className="space-y-1.5 text-sm mb-6">
-              <p className="text-white/70">contact@stdreux.com.au</p>
-              <p className="text-white/70">+61 246117229</p>
+            <div className="space-y-2 text-sm mb-6">
+              <p className="text-white/70 flex items-center gap-2">
+                <Mail className="w-4 h-4 shrink-0" />
+                contact@stdreux.com.au
+              </p>
+              <p className="text-white/70 flex items-center gap-2">
+                <Phone className="w-4 h-4 shrink-0" />
+                +61 246117229
+              </p>
+              <p className="text-white/70 flex items-start gap-2">
+                <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+                3/93 Jedda Rd, Prestons NSW 2170
+              </p>
             </div>
 
             <div>
