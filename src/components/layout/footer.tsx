@@ -103,14 +103,14 @@ export function Footer() {
 
           {/* Contact Info & Social */}
           <div className="lg:w-[25%]">
-            <h4 className="font-semibold mb-2 text-sm text-white">Contact Us</h4>
+            <h4 className="font-semibold mb-2 text-base text-white">Contact Us</h4>
             <div className="space-y-1.5 text-sm mb-6">
               <p className="text-white/70">contact@stdreux.com.au</p>
               <p className="text-white/70">+61 246117229</p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-sm text-white">Follow us</h4>
+              <h4 className="font-semibold mb-4 text-base text-white">Follow us</h4>
               <div className="flex gap-3 items-center">
                 {/* Facebook */}
                 <a
@@ -154,7 +154,7 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="lg:w-[40%]">
-            <h4 className="font-semibold mb-4 text-sm text-white">Sign up for our Newsletter</h4>
+            <h4 className="font-semibold mb-4 text-base text-white">Sign up for our Newsletter</h4>
             <form onSubmit={handleNewsletterSubmit} className="w-full max-w-sm">
               <div className="flex items-center rounded-full bg-white pl-1 pr-1 py-1">
                 <input
