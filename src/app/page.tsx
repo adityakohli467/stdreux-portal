@@ -768,7 +768,7 @@ export default function HomePage() {
 
       {/* Wholesale Partner Section */}
       <section
-        className="w-screen py-16"
+        className="w-screen py-16 mt-12"
         style={{
           backgroundColor: "#2C1A0E",
           marginLeft: "calc(50% - 50vw)",
