@@ -43,7 +43,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#0b1a2e] text-white relative overflow-hidden">
+    <footer className="bg-[#0d1a44] text-white relative overflow-hidden">
       {/* Watermark Background */}
       <div className="absolute right-0 bottom-0 pointer-events-none opacity-100">
         <Image
@@ -164,16 +164,16 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="lg:w-[40%]">
-            <h4 className="text-base font-semibold mb-4 text-white">Sign up for our Newsletter</h4>
+            <h4 className="font-semibold mb-4 text-sm text-white">Sign up for our Newsletter</h4>
             <form onSubmit={handleNewsletterSubmit} className="w-full max-w-sm">
-              <div className="flex items-center rounded-full border border-white/30 bg-white/5 pl-5 pr-1 py-1">
+              <div className="flex items-center rounded-full bg-white pl-1 pr-1 py-1">
                 <input
                   type="email"
                   placeholder="Enter Email Address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
-                  className="flex-1 bg-transparent text-white placeholder:text-white/40 text-sm outline-none disabled:opacity-50 min-w-0"
+                  className="flex-1 bg-transparent text-black placeholder:text-gray-400 text-sm outline-none disabled:opacity-50 min-w-0 pl-4"
                   required
                 />
                 <button
