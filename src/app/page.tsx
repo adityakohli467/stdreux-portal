@@ -1040,7 +1040,7 @@ export default function HomePage() {
               </div>
               {/* Video 2 Thumbnail */}
               <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video2.mp4")}>
-                <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <Image src="/assets/images/video-thumb-2.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
                   <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
                     <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
