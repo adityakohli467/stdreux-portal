@@ -797,7 +797,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Subscription Section */}
+      {/* Subscription Section - Commented Out
       <section
         className="w-screen py-16"
         style={{
@@ -848,6 +848,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Testimonials */}
       <section className="py-16 bg-[#F5F5F0]">
