@@ -749,7 +749,7 @@ export default function HomePage() {
       <section
         className="w-screen py-16"
         style={{
-          backgroundColor: "#f5f0eb",
+          backgroundColor: "#f5f5f0",
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
         }}
@@ -759,7 +759,7 @@ export default function HomePage() {
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-gray-600 uppercase mb-3">Our Story</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44] mb-6">
-                More Than Coffee
+                More than Coffee
               </h2>
               <p className="text-gray-700 leading-relaxed mb-8">
                 At the heart of St Dreux Coffee is Ernest Igual, bringing decades of industry experience, roasting expertise, and a deep passion for specialty coffee. As a certified Q Grader, one of the coffee industry&#39;s most respected qualifications, Ernest has built strong relationships across the coffee supply chain with a focus on quality sourcing, transparency, and education.
@@ -830,6 +830,7 @@ export default function HomePage() {
                 Crafted for Hospitality
               </h2>
               <p className="text-white/80 mb-8 leading-relaxed text-base">
+
                 Partnering with cafes, restaurants, hotels and workplaces to deliver exceptional beverage experiences through quality products, equipment solutions and industry expertise.
               </p>
 
