@@ -777,20 +777,20 @@ export default function HomePage() {
 
               <div className="grid grid-cols-4 gap-4 mb-8">
                 <div className="flex flex-col items-center text-center gap-2">
-                  <Image src="/assets/images/icon_equipment_supplies.png" alt="Equipment Supplies" width={40} height={40} className="object-contain" />
-                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Equipment Supplies</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-2">
-                  <Image src="/assets/images/icon_wholesale_supply.png" alt="Wholesale Supply" width={40} height={40} className="object-contain" />
+                  <Image src="/assets/images/icon_wholesale_supply.png" alt="Wholesale Supply" width={52} height={52} className="object-contain" />
                   <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Wholesale Supply</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2">
-                  <Image src="/assets/images/icon_coffee_excellence.png" alt="Coffee Excellence" width={40} height={40} className="object-contain" />
+                  <Image src="/assets/images/icon_coffee_excellence.png" alt="Coffee Excellence" width={52} height={52} className="object-contain" />
                   <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Coffee Excellence</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2">
-                  <Image src="/assets/images/icon_subscriptions.png" alt="Subscriptions" width={40} height={40} className="object-contain" />
+                  <Image src="/assets/images/icon_subscriptions.png" alt="Subscriptions" width={52} height={52} className="object-contain" />
                   <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Subscriptions</span>
+                </div>
+                <div className="flex flex-col items-center text-center gap-2">
+                  <Image src="/assets/images/icon_equipment_supplies.png" alt="Equipment Supplies" width={52} height={52} className="object-contain" />
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Equipment Supplies</span>
                 </div>
               </div>
 
