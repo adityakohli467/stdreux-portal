@@ -1059,7 +1059,7 @@ export default function HomePage() {
       {/* Video Modal */}
       {activeVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70" onClick={() => setActiveVideo(null)}>
-          <div className="relative w-full max-w-lg mx-4" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-sm mx-4" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setActiveVideo(null)}
               className="absolute -top-10 right-0 text-white hover:text-white/80 text-2xl font-bold"
@@ -1070,7 +1070,7 @@ export default function HomePage() {
               src={activeVideo}
               autoPlay
               controls
-              className="w-full rounded-lg"
+              className="w-full max-h-[70vh] rounded-lg object-contain"
             />
           </div>
         </div>
