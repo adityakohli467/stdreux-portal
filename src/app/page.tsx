@@ -747,49 +747,69 @@ export default function HomePage() {
 
       {/* Wholesale Partner Section */}
       <section
-        className="w-screen py-16 bg-[#5C4033]"
+        className="w-screen py-16"
         style={{
+          backgroundColor: "#2C1A0E",
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
         }}
       >
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src="/assets/sndurex/Rectangle 183.png"
-                alt="Coffee Beans"
-                fill
-                className="object-cover"
-              />
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-3">
+              <div className="relative h-64 lg:h-[280px] rounded-lg overflow-hidden">
+                <Image
+                  src="/assets/sndurex/Rectangle 183.png"
+                  alt="Coffee Beans"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative h-64 lg:h-[280px] rounded-lg overflow-hidden">
+                <Image
+                  src="/assets/sndurex/Rectangle 180.png"
+                  alt="Coffee"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="text-white">
-              <p
-                className="text-lg sm:text-xl mb-2 font-light italic"
-                style={{ fontFamily: "cursive" }}
-              >
-                Become a
+              <p className="text-sm tracking-[0.2em] text-white/60 mb-1 uppercase">
+                Wholesale
               </p>
-              <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-                Wholesale Partner
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+                Crafted For Hospitality
               </h2>
-              <p className="text-white/90 mb-6 leading-relaxed text-lg">
-                At St. Dreux Coffee, we collaborate to create exceptional
-                experiences. We are dedicated to making things happen and enjoy
-                pushing boundaries to ensure you receive the best possible
-                service.
+              <p className="text-white/80 mb-8 leading-relaxed text-base">
+                Partnering with cafes, restaurants, hotels and workplaces to deliver exceptional beverage experiences through quality products, equipment solutions and industry expertise.
               </p>
-              <p className="text-white/90 mb-8 leading-relaxed text-lg">
-                If you're inspired by this and are ready to discover how we can
-                make a difference for you, reach out below and let's take the
-                next step together.
-              </p>
+
+              <div className="grid grid-cols-4 gap-4 mb-8">
+                <div className="flex flex-col items-center text-center gap-2">
+                  <Image src="/assets/images/icon_equipment_supplies.png" alt="Equipment Supplies" width={40} height={40} className="object-contain" />
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Equipment Supplies</span>
+                </div>
+                <div className="flex flex-col items-center text-center gap-2">
+                  <Image src="/assets/images/icon_wholesale_supply.png" alt="Wholesale Supply" width={40} height={40} className="object-contain" />
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Wholesale Supply</span>
+                </div>
+                <div className="flex flex-col items-center text-center gap-2">
+                  <Image src="/assets/images/icon_coffee_excellence.png" alt="Coffee Excellence" width={40} height={40} className="object-contain" />
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Coffee Excellence</span>
+                </div>
+                <div className="flex flex-col items-center text-center gap-2">
+                  <Image src="/assets/images/icon_subscriptions.png" alt="Subscriptions" width={40} height={40} className="object-contain" />
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Subscriptions</span>
+                </div>
+              </div>
+
               <Link href="/wholesale-info">
                 <Button
                   size="lg"
-                  className="bg-[#031881] hover:bg-[#1a3a9e] text-white px-8 py-6 text-lg rounded-lg"
+                  className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-3 text-sm tracking-[0.1em] uppercase font-semibold rounded-md"
                 >
-                  Partner with Us!
+                  Become A Wholesale Partner
                 </Button>
               </Link>
             </div>
