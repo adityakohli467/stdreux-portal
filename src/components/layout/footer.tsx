@@ -180,7 +180,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-2.5 text-sm font-semibold rounded-full transition-colors disabled:opacity-50 whitespace-nowrap ml-2 shrink-0"
+                  className="bg-[#105A9C] hover:bg-[#0d4a82] text-white px-6 py-2.5 text-sm font-semibold rounded-full transition-colors disabled:opacity-50 whitespace-nowrap ml-2 shrink-0"
                 >
                   {loading ? "..." : "Submit"}
                 </button>
