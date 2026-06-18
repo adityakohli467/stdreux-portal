@@ -204,7 +204,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6 flex justify-end">
           <p className="text-sm text-white/50">
-            COPYRIGHT © 2025 ST.DREUX COFFEE
+            COPYRIGHT © {new Date().getFullYear()} ST.DREUX COFFEE
           </p>
         </div>
       </div>
