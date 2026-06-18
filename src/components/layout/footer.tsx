@@ -43,18 +43,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#0d1a44] text-white relative overflow-hidden">
-      {/* Watermark Background */}
-      <div className="absolute right-0 bottom-0 pointer-events-none opacity-100">
-        <Image
-          src="/assets/images/footer-watermark.png"
-          alt=""
-          width={400}
-          height={400}
-          className="object-contain"
-        />
-      </div>
-
+    <footer className="text-white relative" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 mb-12">
           {/* Logo and Brand */}
