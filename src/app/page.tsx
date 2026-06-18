@@ -523,7 +523,8 @@ export default function HomePage() {
             <div className="flex gap-4">
               <Link href="/auth/register">
                 <Button
-                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
+                  variant="outline"
+                  className="bg-transparent border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
                 >
                   Register
                 </Button>
