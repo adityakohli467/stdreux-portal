@@ -758,7 +758,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-64 lg:h-auto lg:aspect-[4/3] rounded-lg overflow-hidden">
               <Image
-                src="/assets/sndurex/Rectangle 183.png"
+                src="/assets/images/wholesale-coffee.jpeg"
                 alt="Coffee Beans"
                 fill
                 className="object-cover"
