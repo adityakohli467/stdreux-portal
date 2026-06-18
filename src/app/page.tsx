@@ -649,7 +649,7 @@ export default function HomePage() {
               <Button
                 className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8"
               >
-                View more
+                View more <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>
