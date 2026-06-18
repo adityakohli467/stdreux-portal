@@ -745,6 +745,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Coffee Origins Map */}
+      <section
+        className="w-screen"
+        style={{
+          marginLeft: "calc(50% - 50vw)",
+          marginRight: "calc(50% - 50vw)",
+        }}
+      >
+        <Link href="https://stdreux.com.au/shop?category=3&purchaseType=one-time">
+          <div className="relative w-full cursor-pointer">
+            <Image
+              src="/assets/images/coffee-origins-map.png"
+              alt="Coffee Origins Map"
+              width={1920}
+              height={600}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Link>
+      </section>
+
       {/* Wholesale Partner Section */}
       <section
         className="w-screen py-16"
