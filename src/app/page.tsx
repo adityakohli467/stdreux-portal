@@ -361,13 +361,13 @@ export default function HomePage() {
                           <span className="text-sm text-gray-500 line-through">
                             ${strikePrice.toFixed(2)}
                           </span>
-                          <span className="text-xl font-bold text-[#031881]">
+                          <span className="text-xl font-bold text-[#105a9c]">
                             ${displayPrice.toFixed(2)}
                           </span>
                         </>
                       ) : (
                         // No strike price available
-                        <span className="text-xl font-bold text-[#031881]">
+                        <span className="text-xl font-bold text-[#105a9c]">
                           ${displayPrice.toFixed(2)}
                         </span>
                       )}
@@ -391,7 +391,7 @@ export default function HomePage() {
                                 2
                               )}
                           </span>
-                          <span className="text-xl font-bold text-[#031881]">
+                          <span className="text-xl font-bold text-[#105a9c]">
                             ${product.discounted_price.toFixed(2)}
                           </span>
                           {product.discount_percentage &&
@@ -403,7 +403,7 @@ export default function HomePage() {
                         </div>
                       ) : (
                         // Regular price
-                        <span className="text-xl font-bold text-[#031881]">
+                        <span className="text-xl font-bold text-[#105a9c]">
                           ${displayPrice.toFixed(2)}
                         </span>
                       )}
@@ -418,7 +418,7 @@ export default function HomePage() {
             <Button
               asChild
               size="sm"
-              className="w-full bg-[#031881] hover:bg-[#1a3a9e] mt-auto"
+              className="w-full bg-[#105a9c] hover:bg-[#0d4a82] mt-auto"
             >
               <span>View Product</span>
             </Button>
@@ -495,7 +495,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col w-full overflow-x-hidden">
+    <div className="flex flex-col w-full overflow-x-hidden bg-[#f5f5f0]">
       {/* Hero Section */}
       <section className="relative h-[600px] sm:h-[700px] md:h-[800px] bg-black">
         <div className="absolute inset-0">
@@ -522,7 +522,7 @@ export default function HomePage() {
             <Link href="/shop">
               <Button
                 size="lg"
-                className="bg-[#031881] hover:bg-[#1a3a9e] text-white px-8 py-6 text-lg"
+                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-6 text-lg"
               >
                 Order Now
               </Button>
@@ -580,7 +580,7 @@ export default function HomePage() {
             <Link href="/shop">
               <Button
                 variant="outline"
-                className="border-[#031881] text-[#031881] hover:bg-[#031881] hover:text-white"
+                className="border-[#105a9c] text-[#105a9c] hover:bg-[#105a9c] hover:text-white"
               >
                 View more
               </Button>
@@ -599,7 +599,7 @@ export default function HomePage() {
               <Link href="/shop">
                 <Button
                   variant="outline"
-                  className="border-[#031881] text-[#031881] hover:bg-[#031881] hover:text-white"
+                  className="border-[#105a9c] text-[#105a9c] hover:bg-[#105a9c] hover:text-white"
                 >
                   Browse All Products
                 </Button>
@@ -632,7 +632,7 @@ export default function HomePage() {
                   key={pageNum}
                   variant="outline"
                   size="icon"
-                  className={`rounded-full ${coffeePage === pageNum ? "bg-[#031881] text-white" : ""
+                  className={`rounded-full ${coffeePage === pageNum ? "bg-[#105a9c] text-white" : ""
                     }`}
                   onClick={() => setCoffeePage(pageNum)}
                 >
@@ -671,7 +671,7 @@ export default function HomePage() {
             <Link href="/shop">
               <Button
                 variant="outline"
-                className="border-[#031881] text-[#031881] hover:bg-[#031881] hover:text-white"
+                className="border-[#105a9c] text-[#105a9c] hover:bg-[#105a9c] hover:text-white"
               >
                 View more
               </Button>
@@ -690,7 +690,7 @@ export default function HomePage() {
               <Link href="/shop">
                 <Button
                   variant="outline"
-                  className="border-[#031881] text-[#031881] hover:bg-[#031881] hover:text-white"
+                  className="border-[#105a9c] text-[#105a9c] hover:bg-[#105a9c] hover:text-white"
                 >
                   Browse All Products
                 </Button>
@@ -721,7 +721,7 @@ export default function HomePage() {
                     key={pageNum}
                     variant="outline"
                     size="icon"
-                    className={`rounded-full ${teaPage === pageNum ? "bg-[#031881] text-white" : ""
+                    className={`rounded-full ${teaPage === pageNum ? "bg-[#105a9c] text-white" : ""
                       }`}
                     onClick={() => setTeaPage(pageNum)}
                   >
