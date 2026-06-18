@@ -506,6 +506,7 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
         <div className="relative container mx-auto px-6 h-full flex items-center">
           <div className="max-w-lg">
@@ -522,8 +523,7 @@ export default function HomePage() {
             <div className="flex gap-4">
               <Link href="/auth/register">
                 <Button
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm bg-transparent"
+                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
                 >
                   Register
                 </Button>
