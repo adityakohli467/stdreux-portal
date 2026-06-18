@@ -544,7 +544,7 @@ export default function HomePage() {
 
       {/* Icons Below Banner */}
       <section
-        className="w-screen"
+        className="w-screen bg-[#f5f5f0]"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
@@ -555,7 +555,7 @@ export default function HomePage() {
           alt="St. Dreux Coffee Features"
           width={1920}
           height={170}
-          className="w-full h-[170px] object-contain"
+          className="w-full h-[100px] sm:h-[130px] md:h-[170px] object-cover"
         />
       </section>
 
