@@ -755,8 +755,8 @@ export default function HomePage() {
         }}
       >
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="relative h-72 lg:h-[350px] rounded-lg overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative h-64 lg:h-auto lg:aspect-[4/3] rounded-lg overflow-hidden">
               <Image
                 src="/assets/sndurex/Rectangle 183.png"
                 alt="Coffee Beans"
