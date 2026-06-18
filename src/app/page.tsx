@@ -550,7 +550,7 @@ export default function HomePage() {
         }}
       >
         <Image
-          src="/assets/images/icons-below-banner.png"
+          src="/assets/images/icons-below-banner.jpeg"
           alt="St. Dreux Coffee Features"
           width={1920}
           height={170}
