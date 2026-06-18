@@ -45,7 +45,7 @@ export function Footer() {
   return (
     <footer className="text-white relative" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="container mx-auto px-6 py-12 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 mb-12">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 mb-12">
           {/* Logo and Brand */}
           <div className="lg:w-[15%]">
             <div className="mb-2">
@@ -110,11 +110,11 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-2 text-sm text-white">Follow us</h4>
+              <h4 className="font-semibold mb-4 text-sm text-white">Follow us</h4>
               <div className="flex gap-3 items-center">
                 {/* Facebook */}
                 <a
-                  href="https://facebook.com/stdreuxcoffee"
+                  href="https://www.facebook.com/St.DreuxCoffee/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-white/80 transition-colors"
@@ -138,7 +138,7 @@ export function Footer() {
                 </a>
                 {/* TikTok */}
                 <a
-                  href="https://tiktok.com/@stdreuxcoffee"
+                  href="https://www.tiktok.com/@stdreuxau"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-white/80 transition-colors"
