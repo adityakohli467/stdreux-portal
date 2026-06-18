@@ -340,7 +340,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-[#031881] sticky top-0 z-50 shadow-md">
+    <header className="sticky top-0 z-50 shadow-md" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20 min-h-[64px] sm:min-h-[80px]">
           {/* Logo */}
@@ -557,35 +557,13 @@ export function Header() {
                 </div>
               </DropdownMenu>
             ) : (
-              <DropdownMenu
-                trigger={
-                  <button className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/20">
-                    <User className="h-5 w-5" />
-                  </button>
-                }
-                align="right"
-              >
-                <div className="py-1">
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/auth/login"
-                      className="flex items-center gap-2"
-                    >
-                      <LogIn className="h-4 w-4" />
-                      Login
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/auth/register"
-                      className="flex items-center gap-2"
-                    >
-                      <User className="h-4 w-4" />
-                      Register
-                    </Link>
-                  </DropdownMenuItem>
-                </div>
-              </DropdownMenu>
+              <Link href="/auth/register">
+                <Button
+                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
+                >
+                  Register
+                </Button>
+              </Link>
             )}
           </div>
 

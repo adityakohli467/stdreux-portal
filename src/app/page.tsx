@@ -418,9 +418,9 @@ export default function HomePage() {
             <Button
               asChild
               size="sm"
-              className="w-full bg-[#105a9c] hover:bg-[#0d4a82] mt-auto"
+              className="w-auto px-4 bg-[#105a9c] hover:bg-[#0d4a82] mt-auto"
             >
-              <span>View Product</span>
+              <span>View Details</span>
             </Button>
           </CardContent>
         </Card>
@@ -497,7 +497,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full overflow-x-hidden bg-[#f5f5f0]">
       {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[600px] md:h-[700px] bg-[#0d1a2e]">
+      <section className="relative h-[350px] sm:h-[500px] md:h-[600px] bg-[#0d1a2e]">
         <div className="absolute inset-0">
           <Image
             src="/assets/images/hero-banner.jpeg"
@@ -506,7 +506,7 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/65" />
         </div>
         <div className="relative container mx-auto px-6 h-full flex items-center">
           <div className="max-w-lg">
@@ -523,16 +523,14 @@ export default function HomePage() {
             <div className="flex gap-4">
               <Link href="/auth/register">
                 <Button
-                  variant="outline"
-                  className="bg-transparent border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
+                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
                 >
                   Register
                 </Button>
               </Link>
               <Link href="/shop">
                 <Button
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-[#0d1a2e] px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm bg-transparent"
+                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-6 py-3 text-xs tracking-[0.15em] uppercase font-semibold rounded-sm"
                 >
                   Explore Coffee
                 </Button>
@@ -544,23 +542,32 @@ export default function HomePage() {
 
       {/* Icons Below Banner */}
       <section
-        className="w-screen bg-[#f5f5f0]"
+        className="w-screen bg-[#f5f5f0] -mt-1"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
         }}
       >
+        {/* Desktop image */}
         <Image
           src="/assets/images/icons-below-banner.jpeg"
           alt="St. Dreux Coffee Features"
           width={1920}
           height={170}
-          className="w-full h-[100px] sm:h-[130px] md:h-[170px] object-cover"
+          className="hidden sm:block w-full h-[130px] md:h-[170px] object-cover"
+        />
+        {/* Mobile image */}
+        <Image
+          src="/assets/images/icons-below-banner-mobile.jpeg"
+          alt="St. Dreux Coffee Features"
+          width={750}
+          height={400}
+          className="block sm:hidden w-full h-auto"
         />
       </section>
 
       {/* Coffee Blends Section */}
-      <section className="py-16 bg-[#F5F5F0]">
+      <section className="pt-6 sm:pt-16 pb-16 bg-[#F5F5F0]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-gray-900">
@@ -828,8 +835,7 @@ export default function HomePage() {
                 Crafted for Hospitality
               </h2>
               <p className="text-white/80 mb-8 leading-relaxed text-base">
-
-                Partnering with cafes, restaurants, hotels and workplaces to deliver exceptional beverage experiences through quality products, equipment solutions and industry expertise.
+                Partnering with cafés, restaurants, hotels and workplaces to deliver exceptional coffee experiences through premium roasted beans, reliable supply and industry expertise.
               </p>
 
               <div className="grid grid-cols-4 gap-4 mb-8">
@@ -847,7 +853,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col items-center text-center gap-2">
                   <Image src="/assets/images/icon_equipment_supplies.png" alt="Equipment Supplies" width={52} height={52} className="object-contain" />
-                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight">Equipment Supplies</span>
+                  <span className="text-[10px] tracking-[0.15em] text-white/70 uppercase leading-tight whitespace-nowrap">Equipment Supplies</span>
                 </div>
               </div>
 

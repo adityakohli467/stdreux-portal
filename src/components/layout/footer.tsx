@@ -168,7 +168,7 @@ export function Footer() {
           <div className="lg:w-[40%]">
             <h4 className="font-semibold mb-4 text-base text-white">Sign Up for Our Newsletter</h4>
             <form onSubmit={handleNewsletterSubmit} className="w-full max-w-sm">
-              <div className="flex items-center rounded-full bg-white pl-1 pr-1 py-1">
+              <div className="flex items-center bg-white pl-1 pr-1 py-1">
                 <input
                   type="email"
                   placeholder="Enter Email Address..."
@@ -181,7 +181,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#105A9C] hover:bg-[#0d4a82] text-white px-6 py-2.5 text-sm font-semibold rounded-full transition-colors disabled:opacity-50 whitespace-nowrap ml-2 shrink-0"
+                  className="bg-[#105A9C] hover:bg-[#0d4a82] text-white px-6 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 whitespace-nowrap ml-2 shrink-0"
                 >
                   {loading ? "..." : "Submit"}
                 </button>
