@@ -568,7 +568,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-gray-900">
-              DISCOVER OUR COFFEE
+              Discover Our Coffee
             </h2>
             <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
               Explore a collection of expertly roasted coffees, sourced from renowned growing regions and crafted to deliver consistency, character and exceptional flavour in every cup
