@@ -769,7 +769,7 @@ export default function HomePage() {
                 Wholesale
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Crafted For Hospitality
+                Crafted for Hospitality
               </h2>
               <p className="text-white/80 mb-8 leading-relaxed text-base">
                 Partnering with cafes, restaurants, hotels and workplaces to deliver exceptional beverage experiences through quality products, equipment solutions and industry expertise.
