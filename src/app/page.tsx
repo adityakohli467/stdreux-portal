@@ -756,23 +756,13 @@ export default function HomePage() {
       >
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-3">
-              <div className="relative h-64 lg:h-[280px] rounded-lg overflow-hidden">
-                <Image
-                  src="/assets/sndurex/Rectangle 183.png"
-                  alt="Coffee Beans"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative h-64 lg:h-[280px] rounded-lg overflow-hidden">
-                <Image
-                  src="/assets/sndurex/Rectangle 180.png"
-                  alt="Coffee"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
+              <Image
+                src="/assets/sndurex/Rectangle 183.png"
+                alt="Coffee Beans"
+                fill
+                className="object-cover"
+              />
             </div>
             <div className="text-white">
               <p className="text-sm tracking-[0.2em] text-white/60 mb-1 uppercase">
