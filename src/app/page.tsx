@@ -67,7 +67,6 @@ export default function HomePage() {
   const [reviewsLoading, setReviewsLoading] = useState(true);
   const [coffeePage, setCoffeePage] = useState(1);
   const [teaPage, setTeaPage] = useState(1);
-  const [brewingPage, setBrewingPage] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { customer } = useAuthStore();
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
@@ -428,29 +427,9 @@ export default function HomePage() {
     );
   };
 
-  // Static brewing images
-  const BREWING_IMAGES = [
-    {
-      id: 1,
-      image: "/assets/sndurex/Feature Card.png",
-      alt: "St. Dreux Coffee Cups",
-    },
-    {
-      id: 2,
-      image: "/assets/sndurex/Feature Card (1).png",
-      alt: "The Shepherd Coffee Bag",
-    },
-    {
-      id: 3,
-      image: "/assets/sndurex/Feature Card (2).png",
-      alt: "Coffee Pouring",
-    },
-  ] as const;
-
   // Pagination constants
   const COFFEE_PRODUCTS_PER_PAGE = 4;
   const TEA_PRODUCTS_PER_PAGE = 4;
-  const BREWING_IMAGES_PER_PAGE = 3;
 
   // Calculate pagination for coffee products (4 per page)
   const coffeeTotalPages = useMemo(() => {
@@ -477,17 +456,6 @@ export default function HomePage() {
     const endIndex = startIndex + TEA_PRODUCTS_PER_PAGE;
     return teaProducts.slice(startIndex, endIndex);
   }, [teaProducts, teaPage]);
-
-  // Calculate pagination for brewing images (3 per page)
-  const brewingTotalPages = useMemo(() => {
-    return Math.ceil(BREWING_IMAGES.length / BREWING_IMAGES_PER_PAGE);
-  }, []);
-
-  const displayedBrewingImages = useMemo(() => {
-    const startIndex = (brewingPage - 1) * BREWING_IMAGES_PER_PAGE;
-    const endIndex = startIndex + BREWING_IMAGES_PER_PAGE;
-    return BREWING_IMAGES.slice(startIndex, endIndex);
-  }, [brewingPage]);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1024,78 +992,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Brewing Gallery */}
-      <section className="py-16 bg-[#F5F5F0]">
+      {/* Instagram Follow Section */}
+      <section className="py-8 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">
-              See What's{" "}
-              <span className="italic" style={{ fontFamily: "cursive" }}>
-                Brewing
-              </span>
-            </h2>
-            <p className="text-gray-600">
-              Follow us @stdreux_coffee. Snap, share, and tag us — let&#39;s
-              create stories, one cup at a time.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {displayedBrewingImages.map((item) => (
-              <div
-                key={item.id}
-                className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            {/* Left - Follow CTA */}
+            <div className="lg:w-[20%] text-center lg:text-left">
+              <p className="text-xs font-semibold tracking-widest text-gray-600 mb-1">FOLLOW THE JOURNEY</p>
+              <p className="text-xl font-bold text-[#0d1a44] mb-3">@stdreuxau</p>
+              <a
+                href="https://www.instagram.com/stdreuxau"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#105a9c] text-white text-xs font-semibold tracking-wider px-6 py-2.5 rounded-sm hover:bg-[#0d4a82] transition-colors"
               >
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-              </div>
-            ))}
-          </div>
-
-          {brewingTotalPages > 1 && (
-            <div className="flex justify-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full"
-                onClick={() => setBrewingPage((p) => Math.max(1, p - 1))}
-                disabled={brewingPage === 1}
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </Button>
-              {Array.from(
-                { length: brewingTotalPages || 1 },
-                (_, i) => i + 1
-              ).map((pageNum) => (
-                <Button
-                  key={pageNum}
-                  variant="outline"
-                  size="icon"
-                  className={`rounded-full ${brewingPage === pageNum ? "bg-[#031881] text-white" : ""
-                    }`}
-                  onClick={() => setBrewingPage(pageNum)}
-                >
-                  {pageNum}
-                </Button>
-              ))}
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full"
-                onClick={() =>
-                  setBrewingPage((p) => Math.min(brewingTotalPages, p + 1))
-                }
-                disabled={brewingPage === brewingTotalPages}
-              >
-                <ChevronRight className="w-4 h-4" />
-              </Button>
+                FOLLOW US
+              </a>
             </div>
-          )}
+            {/* Right - Image Grid */}
+            <div className="lg:w-[80%] grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <Image src="/assets/sndurex/Feature Card (2).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
