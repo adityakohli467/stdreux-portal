@@ -543,8 +543,8 @@ export default function HomePage() {
           src="/assets/images/icons-below-banner.png"
           alt="St. Dreux Coffee Features"
           width={1920}
-          height={200}
-          className="w-full h-auto object-cover"
+          height={170}
+          className="w-full h-[170px] object-contain"
         />
       </section>
 
