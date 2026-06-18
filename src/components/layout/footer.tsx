@@ -62,7 +62,7 @@ export function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div className="lg:w-[18%]">
+          <div className="lg:w-[18%] lg:pl-[50px]">
             <ul className="space-y-1.5">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
