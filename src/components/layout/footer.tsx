@@ -114,6 +114,7 @@ export function Footer() {
 
           {/* Contact Info & Social */}
           <div className="lg:w-[25%]">
+            <h4 className="font-semibold mb-2 text-sm text-white">Contact Us</h4>
             <div className="space-y-1.5 text-sm mb-6">
               <p className="text-white/70">contact@stdreux.com.au</p>
               <p className="text-white/70">+61 246117229</p>
