@@ -191,7 +191,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-6 flex justify-end">
+        <div className="border-t border-white/10 pt-6 flex justify-center">
           <p className="text-sm text-white/50">
             COPYRIGHT © {new Date().getFullYear()} ST.DREUX COFFEE
           </p>
