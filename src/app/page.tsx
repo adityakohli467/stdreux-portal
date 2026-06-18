@@ -770,7 +770,7 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
-            <div className="relative h-72 lg:h-[350px] rounded-lg overflow-hidden">
+            <div className="relative h-64 lg:h-auto lg:aspect-[4/3] rounded-lg overflow-hidden">
               <Image
                 src="/assets/images/our-story.png"
                 alt="Our Story - Ernest Igual"
@@ -784,7 +784,7 @@ export default function HomePage() {
 
       {/* Coffee Origins Map */}
       <section
-        className="w-screen"
+        className="w-screen py-12"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
@@ -805,7 +805,7 @@ export default function HomePage() {
 
       {/* Wholesale Partner Section */}
       <section
-        className="w-screen py-16 mt-12"
+        className="w-screen py-16"
         style={{
           backgroundColor: "#2C1A0E",
           marginLeft: "calc(50% - 50vw)",
