@@ -852,22 +852,55 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="py-16 bg-[#F5F5F0]">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-            <div className="text-center md:text-left mb-6 md:mb-0">
-              <h2 className="text-4xl font-bold text-gray-900 mb-2">
-                Our customers
-              </h2>
-              <p className="text-2xl text-gray-600 italic">
-                keep coming back{" "}
-                <span className="italic" style={{ fontFamily: "cursive" }}>
-                  for more.
-                </span>
-              </p>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-1">
+              Our customers
+            </h2>
+            <p className="text-4xl font-bold text-gray-900">
+              keep coming back{" "}
+              <span className="italic text-[#105a9c]" style={{ fontFamily: "cursive" }}>
+                for more.
+              </span>
+            </p>
+          </div>
 
+          {reviewsLoading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            </div>
+          ) : reviews.length === 0 ? (
+            <div className="text-center py-12 text-gray-500">
+              <p>No reviews available yet.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-8">
+              {reviews.map((review) => (
+                <Card key={review.review_id} className="relative bg-white rounded-xl shadow-sm border-0">
+                  <CardContent className="pt-10 pb-6 px-6">
+                    <div className="text-5xl text-amber-400 font-serif leading-none mb-4">
+                      &#8220;&#8220;
+                    </div>
+                    <p className="text-gray-600 mb-6 leading-relaxed text-sm">
+                      {review.review_text}
+                    </p>
+                    <p className="font-semibold text-gray-900">
+                      {review.reviewer_name}
+                    </p>
+                    {review.reviewer_location && (
+                      <p className="text-sm text-gray-500">
+                        {review.reviewer_location}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          <div className="text-center mt-10">
             <Dialog open={isReviewDialogOpen} onOpenChange={setIsReviewDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-[#031881] hover:bg-[#1a3a9e] text-white">
+                <Button className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-2.5 rounded-md">
                   <Plus className="w-4 h-4 mr-2" />
                   Write a Review
                 </Button>
@@ -936,7 +969,7 @@ export default function HomePage() {
                     />
                   </div>
                   <DialogFooter>
-                    <Button type="submit" disabled={isSubmittingReview} className="bg-[#031881] hover:bg-[#1a3a9e]">
+                    <Button type="submit" disabled={isSubmittingReview} className="bg-[#105a9c] hover:bg-[#0d4a82]">
                       {isSubmittingReview ? "Submitting..." : "Submit Review"}
                     </Button>
                   </DialogFooter>
@@ -944,52 +977,6 @@ export default function HomePage() {
               </DialogContent>
             </Dialog>
           </div>
-
-          {reviewsLoading ? (
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            </div>
-          ) : reviews.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <p>No reviews available yet.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8">
-              {reviews.map((review) => (
-                <Card key={review.review_id} className="relative">
-                  <CardContent className="pt-12 pb-6">
-                    <div className="absolute top-6 left-6 text-6xl text-gray-200">
-                      "
-                    </div>
-                    <p className="text-gray-700 mb-6 relative z-10 leading-relaxed text-sm">
-                      {review.review_text}
-                    </p>
-                    <div className="border-t pt-4">
-                      <p className="font-semibold text-gray-900">
-                        {review.reviewer_name}
-                      </p>
-                      {review.reviewer_location && (
-                        <p className="text-sm text-gray-500">
-                          {review.reviewer_location}
-                        </p>
-                      )}
-                      <div className="flex items-center gap-1 mt-2">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star
-                            key={star}
-                            className={`w-4 h-4 ${star <= review.rating
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-gray-300"
-                              }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
