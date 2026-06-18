@@ -68,6 +68,7 @@ export default function HomePage() {
   const [coffeePage, setCoffeePage] = useState(1);
   const [teaPage, setTeaPage] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const { customer } = useAuthStore();
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
   const [newReview, setNewReview] = useState({
@@ -993,7 +994,7 @@ export default function HomePage() {
       </section>
 
       {/* Instagram Follow Section */}
-      <section className="py-8 bg-white">
+      <section className="py-8 bg-[#f5f5f0]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Left - Follow CTA */}
@@ -1009,24 +1010,71 @@ export default function HomePage() {
                 FOLLOW US
               </a>
             </div>
-            {/* Right - Image Grid */}
-            <div className="lg:w-[80%] grid grid-cols-2 md:grid-cols-4 gap-3">
+            {/* Right - Image & Video Grid (alternating) */}
+            <div className="lg:w-[80%] grid grid-cols-3 md:grid-cols-6 gap-2">
+              {/* Image 1 */}
               <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+                <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+              {/* Video 1 Thumbnail */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video1.mp4")}>
+                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
+              {/* Image 2 */}
               <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/sndurex/Feature Card (2).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+                <Image src="/assets/sndurex/Feature Card (2).png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
               </div>
+              {/* Video 2 Thumbnail */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video2.mp4")}>
+                <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              {/* Image 3 */}
               <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={300} height={300} className="w-full h-full object-cover" />
+                <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
+              </div>
+              {/* Video 3 Thumbnail */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video3.mp4")}>
+                <Image src="/assets/sndurex/Feature Card (2).png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70" onClick={() => setActiveVideo(null)}>
+          <div className="relative w-full max-w-3xl mx-4" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute -top-10 right-0 text-white hover:text-white/80 text-2xl font-bold"
+            >
+              ✕
+            </button>
+            <video
+              src={activeVideo}
+              autoPlay
+              controls
+              className="w-full rounded-lg"
+            />
+          </div>
+        </div>
+      )}
 
 
     </div>
