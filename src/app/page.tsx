@@ -772,7 +772,7 @@ export default function HomePage() {
             </div>
             <div className="relative h-72 lg:h-[350px] rounded-lg overflow-hidden">
               <Image
-                src="/assets/images/our-story.jpeg"
+                src="/assets/images/our-story.png"
                 alt="Our Story - Ernest Igual"
                 fill
                 className="object-cover"
