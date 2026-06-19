@@ -159,7 +159,7 @@ export default function BlogsPage() {
                   variant={selectedFilters.includes(category) ? "default" : "outline"}
                   className={`px-4 py-2 cursor-pointer text-sm ${
                     selectedFilters.includes(category)
-                      ? "bg-[#031881] hover:bg-[#1a3a9e] text-white"
+                      ? "bg-[#105a9c] hover:bg-[#0d4a82] text-white"
                       : "bg-[#E3F2FD] border-[#031881] text-[#031881] hover:bg-[#BBDEFB]"
                   }`}
                   onClick={() => toggleFilter(category)}
@@ -317,7 +317,7 @@ export default function BlogsPage() {
                   key={page}
                   variant="outline"
                   size="icon"
-                  className={`rounded-full ${currentPage === page ? "bg-[#031881] text-white" : ""}`}
+                  className={`rounded-full ${currentPage === page ? "bg-[#105a9c] text-white" : ""}`}
                   onClick={() => {
                     setCurrentPage(page)
                     window.scrollTo({ top: 0, behavior: 'smooth' })

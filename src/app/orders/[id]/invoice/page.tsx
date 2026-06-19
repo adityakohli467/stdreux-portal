@@ -161,7 +161,7 @@ export default function InvoicePage() {
                     </Link>
                     <Button
                         onClick={handlePrint}
-                        className="bg-[#031881] text-white hover:bg-[#1a3a9e] px-6 rounded-lg shadow-sm"
+                        className="bg-[#105a9c] text-white hover:bg-[#0d4a82] px-6 rounded-lg shadow-sm"
                     >
                         <Printer className="h-4 w-4 mr-2" />
                         Print Invoice
@@ -171,7 +171,7 @@ export default function InvoicePage() {
                 {/* Invoice Card */}
                 <div className="bg-white shadow-[0_0_40px_rgba(0,0,0,0.03)] border border-gray-100 rounded-xl overflow-hidden print:shadow-none print:border-none print:rounded-none">
                     {/* Top Branding Bar */}
-                    <div className="h-1.5 bg-[#031881]" />
+                    <div className="h-1.5 bg-[#105a9c]" />
 
                     <div className="p-8 sm:p-12">
                         {/* Header: Logo & Title */}

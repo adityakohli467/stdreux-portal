@@ -194,7 +194,7 @@ function PaymentSuccessContent() {
             You will receive a confirmation email shortly.
           </p>
           <div className="flex gap-4 justify-center">
-            <Button onClick={() => router.push("/account")} className="bg-[#031881] hover:bg-[#1a3a9e]">
+            <Button onClick={() => router.push("/account")} className="bg-[#105a9c] hover:bg-[#0d4a82]">
               View Orders
             </Button>
             <Button variant="outline" onClick={() => router.push("/shop")}>

@@ -2007,7 +2007,7 @@ export default function CheckoutPage() {
 
                       <Button
                         type="submit"
-                        className="w-full bg-[#031881] hover:bg-[#1a3a9e] text-white py-6 font-medium shadow-sm shadow-blue-200"
+                        className="w-full bg-[#105a9c] hover:bg-[#0d4a82] text-white py-6 font-medium shadow-sm shadow-blue-200"
                         disabled={loading || items.length === 0}
                         onClick={() => { paymentActionRef.current = 'card'; setPaymentAction('card'); }}
                       >
@@ -2052,7 +2052,7 @@ export default function CheckoutPage() {
             </div>
 
             <Button
-              className="w-full bg-[#031881] hover:bg-[#031881] text-white mt-6 py-6 uppercase tracking-wider font-medium"
+              className="w-full bg-[#105a9c] hover:bg-[#105a9c] text-white mt-6 py-6 uppercase tracking-wider font-medium"
               onClick={() => router.push('/account?tab=orders')}
             >
               Your Order History

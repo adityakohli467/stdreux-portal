@@ -65,7 +65,7 @@ export default function AboutPage() {
               Crafted with passion, enjoyed in sip. Taste the difference.
             </p>
             <Link href="/contact">
-              <Button size="lg" className="bg-[#031881] hover:bg-[#1a3a9e] text-white px-8 py-6 text-lg">
+              <Button size="lg" className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-6 text-lg">
                 Get in Touch
               </Button>
             </Link>
@@ -88,7 +88,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Roasting Process Section */}
-      <section className="py-20 bg-[#031881]">
+      <section className="py-20 bg-[#105a9c]">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Image */}
@@ -157,7 +157,7 @@ export default function AboutPage() {
               We build lasting partnerships and a community that shares our love for great coffee. Inspired by St. Dreux, the patron saint of coffee-holics, we carry forward his spirit of devotion and purpose — one cup at a time.
             </p>
             <Link href="/wholesale-info">
-              <Button size="lg" className="bg-[#031881] hover:bg-[#1a3a9e] text-white px-8">
+              <Button size="lg" className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8">
                 Partner With Us
               </Button>
             </Link>

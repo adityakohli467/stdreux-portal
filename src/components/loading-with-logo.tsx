@@ -45,9 +45,9 @@ export function LoadingWithLogo({ message = "Loading...", size = "md" }: Loading
       <div className="text-center">
         <p className="text-gray-600 font-medium text-lg animate-pulse">{message}</p>
         <div className="flex justify-center gap-1 mt-2">
-          <div className="w-2 h-2 bg-[#031881] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-          <div className="w-2 h-2 bg-[#031881] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-          <div className="w-2 h-2 bg-[#031881] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+          <div className="w-2 h-2 bg-[#105a9c] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+          <div className="w-2 h-2 bg-[#105a9c] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+          <div className="w-2 h-2 bg-[#105a9c] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
         </div>
       </div>
     </div>

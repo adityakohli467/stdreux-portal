@@ -273,7 +273,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
             <Button variant="outline" size="icon" className="rounded-full">
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full bg-[#031881] text-white">
+            <Button variant="outline" size="icon" className="rounded-full bg-[#105a9c] text-white">
               1
             </Button>
             <Button variant="outline" size="icon" className="rounded-full">

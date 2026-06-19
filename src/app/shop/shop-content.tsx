@@ -991,7 +991,7 @@ export function ShopPageContent() {
                         Reset
                       </Button>
                       <Button
-                        className="flex-1 bg-[#031881] hover:bg-[#1a3a9e]"
+                        className="flex-1 bg-[#105a9c] hover:bg-[#0d4a82]"
                         onClick={handleApplyFilters}
                       >
                         Apply Filters
@@ -1238,7 +1238,7 @@ export function ShopPageContent() {
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSubscriptionToRenew(null)}>Cancel</Button>
-            <Button onClick={performSubscriptionRenewal} className="bg-[#031881]">Proceed</Button>
+            <Button onClick={performSubscriptionRenewal} className="bg-[#105a9c]">Proceed</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -1267,7 +1267,7 @@ export function ShopPageContent() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={() => setShowCancelSuccess(false)} className="bg-[#031881]">OK</Button>
+            <Button onClick={() => setShowCancelSuccess(false)} className="bg-[#105a9c]">OK</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -1495,7 +1495,7 @@ const ProductCard = ({
             </p>
           </div>
           <div className="flex gap-2 mt-auto">
-            <Button asChild size="sm" variant="outline" className="w-full bg-[#031881] text-white hover:bg-white hover:border-[#031881]">
+            <Button asChild size="sm" variant="outline" className="w-full bg-[#105a9c] text-white hover:bg-white hover:border-[#105a9c]">
               <span>View Details</span>
             </Button>
           </div>

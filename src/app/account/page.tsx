@@ -892,7 +892,7 @@ function AccountContent() {
                                   e.preventDefault()
                                   router.push(`/payment?order_id=${order.order_id}`)
                                 }}
-                                className="bg-primary hover:bg-primary/90"
+                                className="bg-[#105a9c] hover:bg-[#0d4a82]"
                                 size="sm"
                               >
                                 <CreditCard className="h-4 w-4 mr-2" />
@@ -1075,7 +1075,7 @@ function AccountContent() {
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSubscriptionToRenew(null)}>Cancel</Button>
-            <Button onClick={performSubscriptionRenewal} className="bg-[#031881]">Proceed</Button>
+            <Button onClick={performSubscriptionRenewal} className="bg-[#105a9c]">Proceed</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -1104,7 +1104,7 @@ function AccountContent() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={() => setShowCancelSuccess(false)} className="bg-[#031881]">OK</Button>
+            <Button onClick={() => setShowCancelSuccess(false)} className="bg-[#105a9c]">OK</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

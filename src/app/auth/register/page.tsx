@@ -367,7 +367,7 @@ function RegisterPageContent() {
                 localStorage.removeItem("last_wholesale_type");
               }}
               className={`flex-1 py-3 px-6 font-medium transition-colors rounded-t-lg ${userType === "customer"
-                ? "bg-[#031881] text-white"
+                ? "bg-[#105a9c] text-white"
                 : "bg-[#F5F5F0] text-gray-600 hover:bg-gray-50"
                 }`}
             >
@@ -381,7 +381,7 @@ function RegisterPageContent() {
                 localStorage.setItem("last_wholesale_type", wholesaleType);
               }}
               className={`flex-1 py-3 px-6 font-medium transition-colors rounded-t-lg ${userType === "wholesale"
-                ? "bg-[#031881] text-white"
+                ? "bg-[#105a9c] text-white"
                 : "bg-[#F5F5F0] text-gray-600 hover:bg-gray-50"
                 }`}
             >
@@ -405,7 +405,7 @@ function RegisterPageContent() {
                     localStorage.setItem("last_wholesale_type", "premium");
                   }}
                   className={`flex-1 py-2 px-4 font-medium transition-colors rounded-lg ${wholesaleType === "premium"
-                    ? "bg-[#031881] text-white"
+                    ? "bg-[#105a9c] text-white"
                     : "bg-[#0F2C5C] text-white/70 hover:bg-[#1e3a6b]"
                     }`}
                 >
@@ -418,7 +418,7 @@ function RegisterPageContent() {
                     localStorage.setItem("last_wholesale_type", "essential");
                   }}
                   className={`flex-1 py-2 px-4 font-medium transition-colors rounded-lg ${wholesaleType === "essential"
-                    ? "bg-[#031881] text-white"
+                    ? "bg-[#105a9c] text-white"
                     : "bg-[#0F2C5C] text-white/70 hover:bg-[#1e3a6b]"
                     }`}
                 >
@@ -886,7 +886,7 @@ function RegisterPageContent() {
 
             <Button
               type="submit"
-              className="w-full py-6 bg-[#031881] hover:bg-[#1a3a9e] text-white font-semibold rounded-lg transition-colors"
+              className="w-full py-6 bg-[#105a9c] hover:bg-[#0d4a82] text-white font-semibold rounded-lg transition-colors"
               disabled={loading}
             >
               {loading ? "Creating account..." : "Sign Up"}

@@ -220,7 +220,7 @@ export default function OrderDetailPage() {
               </div>
               <Button
                 onClick={handleMakePayment}
-                className="bg-primary hover:bg-primary/90 text-white"
+                className="bg-[#105a9c] hover:bg-[#0d4a82] text-white"
                 size="lg"
               >
                 Make Payment
