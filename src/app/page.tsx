@@ -766,9 +766,20 @@ export default function HomePage() {
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44] mb-6">
                 More than Coffee
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-8">
-                At the heart of St Dreux Coffee is Ernest Igual, bringing decades of industry experience, roasting expertise, and a deep passion for specialty coffee. As a certified Q Grader, one of the coffee industry&#39;s most respected qualifications, Ernest has built strong relationships across the coffee supply chain with a focus on quality sourcing, transparency, and education.
-              </p>
+              <div className="text-gray-700 leading-relaxed mb-8 space-y-4">
+                <p>
+                  At St. Dreux Coffee, everything begins with a passion for people, craft, and exceptional coffee. With decades of industry experience and a deep appreciation for coffee&#39;s rich heritage, we bring together growers, roasters, baristas, and café owners to create something truly special.
+                </p>
+                <p>
+                  Our journey is built on a commitment to quality, integrity, and lasting partnerships. From carefully sourcing exceptional coffees from renowned growing regions to precision roasting in Australia, every decision is guided by our pursuit of consistency, character, and flavour.
+                </p>
+                <p>
+                  Inspired by St. Dreux, the patron figure of coffeehouses and hospitality, we carry forward a spirit of dedication, community, and purpose. We believe great coffee has the power to bring people together, create meaningful connections, and elevate everyday moments.
+                </p>
+                <p>
+                  Whether supplying hospitality venues or sharing our coffee with passionate home brewers, our mission remains the same: to deliver exceptional coffee experiences, one cup at a time.
+                </p>
+              </div>
               <Link href="https://stdreux.com.au/about">
                 <Button className="bg-[#105a9c] hover:bg-[#0d4a82] text-white px-8 py-3 text-sm tracking-[0.1em] uppercase font-semibold rounded-sm">
                   Our Story
