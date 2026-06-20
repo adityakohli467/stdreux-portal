@@ -78,10 +78,16 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto text-center">
             <p className="text-gray-700 leading-relaxed text-lg mb-6">
-              At St. Dreux Coffee, everything starts with <span className="font-semibold italic" style={{ color: '#C4A484' }}>passion</span> — for people, for craft, and for the perfect cup. With decades of experience and a love for coffee's rich heritage, we bring together growers, baristas, and café owners to create something truly special.
+              At St. Dreux Coffee, everything begins with a passion for people, craft, and exceptional coffee. With decades of industry experience and a deep appreciation for coffee&#39;s rich heritage, we bring together growers, roasters, baristas, and café owners to create something truly special.
             </p>
             <p className="text-gray-700 leading-relaxed text-lg mb-6">
-              Rooted in integrity and creativity, we build lasting partnerships and a community that shares our love for great coffee. Inspired by St. Dreux, the patron saint of coffeehouses, we carry forward his spirit of devotion and purpose — one cup at a time.
+              Our journey is built on a commitment to quality, integrity, and lasting partnerships. From carefully sourcing exceptional coffees from renowned growing regions to precision roasting in Australia, every decision is guided by our pursuit of consistency, character, and flavour.
+            </p>
+            <p className="text-gray-700 leading-relaxed text-lg mb-6">
+              Inspired by St. Dreux, the patron figure of coffeehouses and hospitality, we carry forward a spirit of dedication, community, and purpose. We believe great coffee has the power to bring people together, create meaningful connections, and elevate everyday moments.
+            </p>
+            <p className="text-gray-700 leading-relaxed text-lg mb-6">
+              Whether supplying hospitality venues or sharing our coffee with passionate home brewers, our mission remains the same: to deliver exceptional coffee experiences, one cup at a time.
             </p>
           </div>
         </div>
