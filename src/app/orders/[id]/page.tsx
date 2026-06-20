@@ -429,7 +429,7 @@ export default function OrderDetailPage() {
                     taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
                   }
 
-                  const gstAmount = taxableAmount / 11;
+                  const gstAmount = taxableAmount / 10;
 
                   if (gstAmount > 0) {
                     return (

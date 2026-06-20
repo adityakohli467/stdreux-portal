@@ -339,8 +339,8 @@ export default function CartPage() {
                 const deliveryFee = 10;
                 const customerType = customer?.customer_type || '';
                 const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type;
-                // GST is always taxableAmount / 11
-                const gst = (taxableAmount + deliveryFee) / 11;
+                // GST is always taxableAmount / 10
+                const gst = (taxableAmount + deliveryFee) / 10;
 
                 if (gst > 0) {
                   return (
@@ -366,7 +366,7 @@ export default function CartPage() {
                       if (!isGstFree) return sum + (getItemPrice(item) * item.quantity);
                       return sum;
                     }, 0);
-                    const gst = isWholesaleCustomer ? (taxableAmount + deliveryFee) / 11 : 0;
+                    const gst = isWholesaleCustomer ? (taxableAmount + deliveryFee) / 10 : 0;
                     const total = subtotal + deliveryFee + gst;
                     return total.toFixed(2);
                   })()}</span>
