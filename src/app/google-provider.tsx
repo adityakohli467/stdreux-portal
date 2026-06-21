@@ -18,7 +18,7 @@ export function GoogleProvider({ children }: GoogleProviderProps) {
     <GoogleOAuthProvider 
       clientId={clientId}
       onScriptLoadError={() => console.error('Google OAuth script failed to load')}
-      onScriptLoadSuccess={() => console.log('Google OAuth script loaded successfully')}
+      onScriptLoadSuccess={() => {}}
     >
       {children}
     </GoogleOAuthProvider>

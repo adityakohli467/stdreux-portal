@@ -66,6 +66,7 @@ function LoginPageContent() {
           }
         }
 
+
         const authStore = useAuthStore.getState();
 
         if (typeof authStore.googleLogin !== "function") {
@@ -100,11 +101,6 @@ function LoginPageContent() {
             }
           }
 
-            isWholesale,
-            isApproved,
-            redirectPath,
-            userTypeMessage,
-          });
 
           // Show success message with longer duration
           toast.success(

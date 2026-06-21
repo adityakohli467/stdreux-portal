@@ -158,6 +158,7 @@ export const useAuthStore = create<AuthState>()(
 
           const googlePassword = `google_oauth_${googleId}`;
 
+
           // STEP 1: Try to login with Google password (for users who previously used Google)
           try {
             const loginResponse = await api.post("/store/auth/login", {
@@ -199,9 +200,6 @@ export const useAuthStore = create<AuthState>()(
               return;
             }
           } catch (loginError: any) {
-              "Google password login failed:",
-              loginError.response?.data?.message || loginError.message
-            );
 
             // If user exists but password is wrong (email/password user), show error
             const errorMsg = loginError.message || loginError.response?.data?.message || "";
