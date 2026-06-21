@@ -306,12 +306,9 @@ export function ShopPageContent() {
       }
       if (enhancedSearch) params.search = enhancedSearch;
 
-      console.log("Fetching products with params:", params);
 
       const response = await api.get("/store/products", { params });
       const productsData = response.data.products || [];
-      console.log("Fetched products:", productsData);
-      console.log("Sample product:", productsData[0]);
 
       // Filter products to only show those with show_in_store = true
       // and those that have valid prices for the current user type.

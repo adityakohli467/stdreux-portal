@@ -110,7 +110,6 @@ function PaymentForm({
                 };
 
                 const endpoint = isAuthenticated ? "/store/orders" : "/store/orders/guest";
-                console.log("Creating order after payment:", finalPayload, "endpoint:", endpoint);
                 const response = await api.post(endpoint, finalPayload);
                 createdOrderIds.push(response.data.order_id);
 
@@ -201,7 +200,6 @@ function PaymentForm({
             }
           }}
           onReady={() => {
-            console.log("PaymentElement is ready");
             setPaymentElementReady(true);
           }}
         />

@@ -418,7 +418,6 @@ export default function CheckoutPage() {
     try {
       setIsLoadingCoupons(true)
       const response = await api.get("/store/coupons")
-      console.log("Coupons API response:", response.data)
       setAvailableCoupons(response.data.coupons || [])
     } catch (error: any) {
       console.error("Failed to fetch coupons:", error)
@@ -447,7 +446,6 @@ export default function CheckoutPage() {
         }
       } catch (error) {
         // Silent failure - proceed as guest
-        console.log("Proceeding as guest due to checkAuth error:", error)
       }
 
       // Re-read items from store after hydration
@@ -595,7 +593,6 @@ export default function CheckoutPage() {
           }
         })
 
-        console.log("Refreshed cart prices and options successfully")
 
       } catch (error) {
         console.error("Failed to refresh cart prices:", error)
@@ -681,13 +678,11 @@ export default function CheckoutPage() {
     setIsValidatingCoupon(true)
     try {
       const subtotal = getTotalPrice()
-      console.log("Validating coupon:", couponToValidate, "with subtotal:", subtotal)
       const response = await api.post("/store/coupons/validate", {
         coupon_code: couponToValidate,
         order_total: subtotal
       })
 
-      console.log("Coupon validation response:", response.data)
       // setValidatedCoupon(response.data) // No longer needed for intermediate step if we auto-apply
 
       if (response.data.valid && response.data.coupon) {
@@ -973,13 +968,11 @@ export default function CheckoutPage() {
       const hasSubscription = subscriptionItems.length > 0;
 
       if (hasOneTime && hasSubscription) {
-        console.log("Mixed cart detected. Restricting coupon to one-time items.", appliedCoupon);
         // If both exist, apply coupon ONLY to one-time items
         couponOneTime = appliedCoupon;
         couponSubscription = null;
       }
 
-      console.log("Coupon allocation finalized:", { couponOneTime, couponSubscription });
 
       const ordersToCreate = [];
 
@@ -1090,7 +1083,6 @@ export default function CheckoutPage() {
         const createdOrderIds: string[] = [];
 
         for (const orderPayload of preparedOrders) {
-          console.log("Submitting invoice order payload:", orderPayload);
           const endpoint = isAuthenticated ? "/store/orders" : "/store/orders/guest";
           const response = await api.post(endpoint, orderPayload);
           createdOrderIds.push(response.data.order_id);
@@ -1104,7 +1096,6 @@ export default function CheckoutPage() {
                 headers: { "Content-Type": "multipart/form-data" },
               })
             } catch (uploadError) {
-              console.log("Image upload skipped (optional):", uploadError)
             }
           }
         }
@@ -1129,7 +1120,6 @@ export default function CheckoutPage() {
         if (existingIntentId) {
           try {
             await api.post("/store/payment/cancel-intent", { payment_intent_id: existingIntentId });
-            console.log(`[CheckoutPage] Canceled stale intent: ${existingIntentId}`);
           } catch (cancelErr) {
             // Non-critical - proceed even if cancel fails
             console.warn("[CheckoutPage] Failed to cancel stale intent:", cancelErr);
@@ -1140,7 +1130,6 @@ export default function CheckoutPage() {
 
         // 1. Create Payment Intent for Cart Amount
         const emailToUse = isAuthenticated ? user?.email : billingData.email;
-        console.log(`[CheckoutPage] Initiating payment intent for email: "${emailToUse}", isAuthenticated: ${isAuthenticated}`);
         
         const response = await api.post("/store/payment/create-intent-for-cart", {
           amount: totalAmountToPay,

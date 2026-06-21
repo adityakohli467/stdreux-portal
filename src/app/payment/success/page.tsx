@@ -54,12 +54,10 @@ function PaymentSuccessContent() {
       // If we are in intent mode and NO order IDs were passed in URL,
       // it means we were redirected by Stripe before order was created.
       if (mode === 'intent' && finalOrderIds.length === 0) {
-        console.log("Redirected with mode=intent and no order_id. Checking session storage...");
         const pendingOrdersStr = sessionStorage.getItem('pending_orders')
         
         if (pendingOrdersStr) {
           const pendingOrders = JSON.parse(pendingOrdersStr)
-          console.log("Found pending orders to create:", pendingOrders)
           
           const createdOrderIds: string[] = []
           

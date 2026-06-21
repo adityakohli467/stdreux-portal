@@ -54,16 +54,9 @@ export default function ProductsPage() {
       if (search) params.search = search;
 
       const response = await api.get("/store/products", { params });
-      console.log("Products API Response:", response.data);
 
       // Debug: Log first product to see available fields
       if (response.data.products && response.data.products.length > 0) {
-        console.log("First product data:", response.data.products[0]);
-        console.log("Available fields:", Object.keys(response.data.products[0]));
-        console.log("base_retail_price:", response.data.products[0].base_retail_price);
-        console.log("retail_price:", response.data.products[0].retail_price);
-        console.log("user_price:", response.data.products[0].user_price);
-        console.log("product_price:", response.data.products[0].product_price);
       }
 
       // Filter products to only show those with show_in_store = true

@@ -60,7 +60,6 @@ function LoginPageContent() {
             if (now - loginTime < fourHours) {
               userType = parsed.userType || "customer";
               wholesaleType = parsed.wholesaleType;
-              console.log("Found existing Google session data:", {
                 userType,
                 wholesaleType,
               });
@@ -70,7 +69,6 @@ function LoginPageContent() {
           }
         }
 
-        console.log(
           "Google login attempt with userType:",
           userType,
           "wholesaleType:",
@@ -111,7 +109,6 @@ function LoginPageContent() {
             }
           }
 
-          console.log("Google login successful:", {
             isWholesale,
             isApproved,
             redirectPath,

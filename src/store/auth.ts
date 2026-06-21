@@ -158,7 +158,6 @@ export const useAuthStore = create<AuthState>()(
 
           const googlePassword = `google_oauth_${googleId}`;
 
-          console.log(
             "Google login attempt for:",
             email,
             "User type:",
@@ -169,7 +168,6 @@ export const useAuthStore = create<AuthState>()(
 
           // STEP 1: Try to login with Google password (for users who previously used Google)
           try {
-            console.log("Trying login with Google password...");
             const loginResponse = await api.post("/store/auth/login", {
               username: email,
               password: googlePassword,
@@ -178,7 +176,6 @@ export const useAuthStore = create<AuthState>()(
             const { token, user, customer } = loginResponse.data;
 
             if (token) {
-              console.log("Login successful with Google password");
               set({
                 user,
                 customer,
@@ -210,7 +207,6 @@ export const useAuthStore = create<AuthState>()(
               return;
             }
           } catch (loginError: any) {
-            console.log(
               "Google password login failed:",
               loginError.response?.data?.message || loginError.message
             );
@@ -290,7 +286,6 @@ export const useAuthStore = create<AuthState>()(
 
           // Use the provided userType from the page
           if (userType === "wholesale") {
-            console.log("Registering as wholesale customer");
             registrationData.company_name = userInfo.name
               ? userInfo.name + " Company"
               : "Google User Company";
@@ -305,7 +300,6 @@ export const useAuthStore = create<AuthState>()(
             registrationData.estimated_opening_date = null;
           }
 
-          console.log("Registration data:", registrationData);
 
           const registerResponse = await api.post(
             "/store/auth/register",

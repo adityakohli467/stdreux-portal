@@ -145,7 +145,6 @@ export default function ProductDetailPage({
       const response = await api.get(`/store/products/${productId}`, {
         headers,
       });
-      console.log("Product detail API response:", response.data);
       const productData = response.data.product;
 
       // Check if product should be shown in store

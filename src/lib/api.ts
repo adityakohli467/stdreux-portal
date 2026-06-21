@@ -5,7 +5,6 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.stdreux.com.au/"
 // Log API URL and warn if using localhost in production
 if (typeof window !== "undefined") {
   if (process.env.NODE_ENV === "development") {
-    console.log("🔗 API Base URL:", API_URL)
   } else if (API_URL.includes("localhost") || API_URL.includes("127.0.0.1")) {
     console.error("⚠️ WARNING: API URL is set to localhost in production!", {
       currentURL: API_URL,
