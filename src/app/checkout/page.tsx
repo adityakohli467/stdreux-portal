@@ -1317,7 +1317,7 @@ export default function CheckoutPage() {
           <div className="bg-[#FFF5F5] border border-[#FFE3E3] rounded-xl p-4 md:p-5 text-center shadow-sm">
             <p className="text-gray-700 text-sm md:text-base">
               Already have an account?{" "}
-              <Link href="/auth/login?redirect=/checkout" className="text-[#2563eb] font-bold hover:underline">
+              <Link href="/auth/login?redirect=/checkout" className="text-[#105a9c] font-bold hover:underline">
                 Sign In
               </Link>
               <span className="mx-4 text-gray-400">|</span>
@@ -1891,7 +1891,7 @@ export default function CheckoutPage() {
                               type="button"
                               onClick={() => validateCoupon()}
                               disabled={isValidatingCoupon || !couponCode}
-                              className="h-9 bg-gray-900 text-white hover:bg-gray-800"
+                              className="h-9 bg-[#105a9c] text-white hover:bg-[#0d4a82]"
                             >
                               {isValidatingCoupon ? "..." : "Apply"}
                             </Button>

@@ -1054,7 +1054,7 @@ export function ShopPageContent() {
                                   </h3>
                                   <Badge
                                     className={`w-fit px-4 py-1 text-sm ${isSubscriptionActive(subscription)
-                                      ? "bg-[#F97316] hover:bg-[#EA580C] text-white border-none"
+                                      ? "bg-[#105a9c] hover:bg-[#0d4a82] text-white border-none"
                                       : "bg-gray-100 text-gray-800"
                                       }`}
                                   >
