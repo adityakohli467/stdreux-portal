@@ -60,20 +60,11 @@ function LoginPageContent() {
             if (now - loginTime < fourHours) {
               userType = parsed.userType || "customer";
               wholesaleType = parsed.wholesaleType;
-                userType,
-                wholesaleType,
-              });
             }
           } catch (e) {
             console.warn("Error parsing Google data:", e);
           }
         }
-
-          "Google login attempt with userType:",
-          userType,
-          "wholesaleType:",
-          wholesaleType
-        );
 
         const authStore = useAuthStore.getState();
 

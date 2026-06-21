@@ -158,14 +158,6 @@ export const useAuthStore = create<AuthState>()(
 
           const googlePassword = `google_oauth_${googleId}`;
 
-            "Google login attempt for:",
-            email,
-            "User type:",
-            userType,
-            "Wholesale type:",
-            wholesaleType
-          );
-
           // STEP 1: Try to login with Google password (for users who previously used Google)
           try {
             const loginResponse = await api.post("/store/auth/login", {
