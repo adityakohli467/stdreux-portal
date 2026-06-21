@@ -25,7 +25,7 @@ function RegisterPageContent() {
   const register = useAuthStore((state) => state.register);
 
   const [userType, setUserType] = useState<"customer" | "wholesale">(
-    "customer"
+    "wholesale"
   );
   const [wholesaleType, setWholesaleType] = useState<"premium" | "essential">(
     "premium"
