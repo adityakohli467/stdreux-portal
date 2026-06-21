@@ -1020,7 +1020,7 @@ export function ShopPageContent() {
                           Please login to view subscriptions
                         </p>
                         <Link href="/auth/login">
-                          <Button className="mt-4">Login</Button>
+                          <Button className="mt-4 bg-[#105a9c] hover:bg-[#0d4a82] text-white">Login</Button>
                         </Link>
                       </div>
                     );
