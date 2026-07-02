@@ -344,16 +344,14 @@ export default function VipRegisterPage() {
           </div>
 
           {/* Mobile: wide first-order card on top + 4 equal square boxes */}
-          <div className="grid grid-cols-2 auto-rows-fr gap-3 max-w-2xl mx-auto lg:hidden">
-            {VIP_BENEFITS.map((benefit) => {
+          <div className="max-w-2xl mx-auto lg:hidden">
+            {VIP_BENEFITS.filter((b) => b.wide).map((benefit) => {
               const Icon = benefit.icon;
-
-              if (benefit.wide) {
-                const featuredWide = benefit.featured;
-                return (
-                  <div
+              const featuredWide = benefit.featured;
+              return (
+                <div
                     key={benefit.eyebrow}
-                    className={`col-span-2 flex items-center gap-4 rounded-2xl border px-5 py-4 text-left ${
+                    className={`flex items-center gap-4 rounded-2xl border px-5 py-3 text-left ${
                       featuredWide
                         ? "border-transparent"
                         : "bg-[#f8f6f0] border-[#ece8e0]"
@@ -409,10 +407,13 @@ export default function VipRegisterPage() {
                     </div>
                   </div>
                 );
-              }
+            })}
 
-              const featured = benefit.featured;
-              return (
+            <div className="grid grid-cols-2 auto-rows-fr gap-3 mt-3">
+              {VIP_BENEFITS.filter((b) => !b.wide).map((benefit) => {
+                const Icon = benefit.icon;
+                const featured = benefit.featured;
+                return (
                 <div
                   key={benefit.eyebrow}
                   className={`flex flex-col items-center justify-center rounded-2xl border px-4 py-5 text-center ${
@@ -467,7 +468,8 @@ export default function VipRegisterPage() {
                   </p>
                 </div>
               );
-            })}
+              })}
+            </div>
           </div>
 
           {/* Desktop: original 5-column layout */}
