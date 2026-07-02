@@ -276,6 +276,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -288,6 +289,11 @@ export function Header() {
   const { getTotalItems } = useCartStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  // On the VIP registration landing page, hide Cart & Register to keep
+  // the customer focused on the single call-to-action (registering).
+  const hideStoreActions = pathname === "/vipregister";
 
   useEffect(() => {
     setMounted(true);
@@ -476,21 +482,23 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-            <Link
-              href={isAuthenticated ? "/checkout" : "/cart"}
-              className="flex items-center gap-2 text-white hover:text-white/80 transition-colors whitespace-nowrap"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              <span className="text-base">Cart</span>
-              {mounted && getTotalItems() > 0 && (
-                <span className="ml-1 text-sm">({getTotalItems()})</span>
-              )}
-              {!mounted && (
-                <span className="ml-1 text-sm" style={{ visibility: "hidden" }}>
-                  (0)
-                </span>
-              )}
-            </Link>
+            {!hideStoreActions && (
+              <Link
+                href={isAuthenticated ? "/checkout" : "/cart"}
+                className="flex items-center gap-2 text-white hover:text-white/80 transition-colors whitespace-nowrap"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                <span className="text-base">Cart</span>
+                {mounted && getTotalItems() > 0 && (
+                  <span className="ml-1 text-sm">({getTotalItems()})</span>
+                )}
+                {!mounted && (
+                  <span className="ml-1 text-sm" style={{ visibility: "hidden" }}>
+                    (0)
+                  </span>
+                )}
+              </Link>
+            )}
 
             {!mounted ? (
               // Show nothing during SSR to prevent hydration mismatch
@@ -557,29 +565,33 @@ export function Header() {
                 </div>
               </DropdownMenu>
             ) : (
-              <Link href="/auth/register">
-                <Button
-                  className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
-                >
-                  Register
-                </Button>
-              </Link>
+              !hideStoreActions && (
+                <Link href="/auth/register">
+                  <Button
+                    className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
+                  >
+                    Register
+                  </Button>
+                </Link>
+              )
             )}
           </div>
 
           {/* Mobile Actions */}
           <div className="flex lg:hidden items-center gap-3">
-            <Link
-              href={isAuthenticated ? "/checkout" : "/cart"}
-              className="flex items-center gap-1 text-white hover:text-white/80 transition-colors relative"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {mounted && getTotalItems() > 0 ? (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {getTotalItems()}
-                </span>
-              ) : null}
-            </Link>
+            {!hideStoreActions && (
+              <Link
+                href={isAuthenticated ? "/checkout" : "/cart"}
+                className="flex items-center gap-1 text-white hover:text-white/80 transition-colors relative"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {mounted && getTotalItems() > 0 ? (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                ) : null}
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -786,14 +798,16 @@ export function Header() {
                       <LogIn className="h-4 w-4" />
                       Login
                     </Link>
-                    <Link
-                      href="/auth/register"
-                      className="flex items-center gap-2 px-4 py-3 text-white hover:bg-white/10 transition-colors text-base"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <User className="h-4 w-4" />
-                      Register
-                    </Link>
+                    {!hideStoreActions && (
+                      <Link
+                        href="/auth/register"
+                        className="flex items-center gap-2 px-4 py-3 text-white hover:bg-white/10 transition-colors text-base"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <User className="h-4 w-4" />
+                        Register
+                      </Link>
+                    )}
                   </>
                 )}
               </div>
