@@ -22,6 +22,7 @@ import { toast } from "sonner";
 
 type VipBenefit = {
   icon: LucideIcon;
+  title: string;
   eyebrow: string;
   highlight?: string;
   description: string;
@@ -32,34 +33,40 @@ type VipBenefit = {
 const VIP_BENEFITS: VipBenefit[] = [
   {
     icon: Tag,
+    title: "30% OFF\nYOUR FIRST ORDER",
     eyebrow: "Your First Order",
     highlight: "30% OFF",
-    description: "Enjoy 30% off your first coffee purchase the moment you join.",
+    description: "Enjoy 30% off your first coffee purchase when you join.",
     featured: true,
   },
   {
     icon: Lock,
+    title: "PRIORITY ACCESS\nTO LIMITED RELEASES",
     eyebrow: "Priority Access to",
     highlight: "Limited Releases",
-    description: "Be first to get our most exclusive, limited-edition coffees.",
+    description: "Be the first to get your hands on our most exclusive coffees.",
   },
   {
     icon: Star,
+    title: "EARLY ACCESS\nTO NEW RELEASES",
     eyebrow: "Early Access to",
     highlight: "New Releases",
-    description: "Shop all new product launches before they go public.",
+    description:
+      "Get early access to all new product launches before anyone else.",
   },
   {
     icon: Percent,
+    title: "VIP DISCOUNT\nRENEWED ANNUALLY",
     eyebrow: "VIP Discount",
     highlight: "Renewed Annually",
-    description: "Your exclusive discount on all coffee products, every year.",
+    description:
+      "Enjoy an exclusive VIP discount on all coffee products, every year.",
   },
   {
     icon: Users,
+    title: "VIP COMMUNITY",
     eyebrow: "VIP Community",
-    description:
-      "Join a community of passionate coffee lovers who share your taste.",
+    description: "Join a community of coffee lovers who share their passion.",
     wide: true,
   },
 ];
@@ -336,7 +343,8 @@ export default function VipRegisterPage() {
             <div className="w-12 h-0.5 bg-[#105a9c] mx-auto mt-4" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
+          {/* Mobile: card grid (4 equal square boxes + wide community card) */}
+          <div className="grid grid-cols-2 auto-rows-fr gap-3 max-w-2xl mx-auto lg:hidden">
             {VIP_BENEFITS.map((benefit) => {
               const Icon = benefit.icon;
 
@@ -365,14 +373,24 @@ export default function VipRegisterPage() {
               return (
                 <div
                   key={benefit.eyebrow}
-                  className={`rounded-2xl border px-4 py-5 text-center ${
+                  className={`flex flex-col items-center justify-center rounded-2xl border px-4 py-5 text-center ${
                     featured
-                      ? "col-span-2 bg-[#0d1a44] border-transparent"
-                      : "bg-[#f8f6f0] border-[#ece8e0] hover:shadow-md transition-shadow"
+                      ? "border-transparent"
+                      : "bg-[#f8f6f0] border-[#ece8e0]"
                   }`}
+                  style={
+                    featured
+                      ? {
+                          backgroundImage:
+                            "url(/assets/images/footer-bg.png)",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }
+                      : undefined
+                  }
                 >
                   <div
-                    className={`w-11 h-11 rounded-full flex items-center justify-center mx-auto mb-3 ${
+                    className={`w-11 h-11 rounded-full flex items-center justify-center mb-3 ${
                       featured ? "bg-white/10" : "bg-[#eaf1f8]"
                     }`}
                   >
@@ -403,6 +421,26 @@ export default function VipRegisterPage() {
                       featured ? "text-white/60" : "text-gray-500"
                     }`}
                   >
+                    {benefit.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop: original 5-column layout */}
+          <div className="hidden lg:grid grid-cols-5 gap-8">
+            {VIP_BENEFITS.map((benefit) => {
+              const Icon = benefit.icon;
+              return (
+                <div key={benefit.eyebrow} className="text-center px-2">
+                  <div className="w-16 h-16 rounded-full bg-[#eaf1f8] flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-7 h-7 text-[#105a9c]" />
+                  </div>
+                  <h3 className="text-sm font-bold text-[#0d1a44] uppercase mb-2 whitespace-pre-line leading-snug">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>
