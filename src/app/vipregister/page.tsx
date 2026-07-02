@@ -147,7 +147,7 @@ export default function VipRegisterPage() {
   return (
     <div className="bg-white">
       {/* Hero Banner */}
-      <section className="relative">
+      <section className="relative min-h-[560px] lg:min-h-[640px] flex items-center">
         <div className="absolute inset-0">
           <Image
             src="/assets/images/vip-banner.png"
@@ -155,12 +155,13 @@ export default function VipRegisterPage() {
             fill
             priority
             className="object-cover"
+            style={{ objectPosition: "center 35%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
         </div>
 
-        <div className="relative container mx-auto px-6 py-12 lg:py-16">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="relative w-full container mx-auto px-6 py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left - Copy */}
             <div className="text-white">
               <p className="text-[#E07856] tracking-[0.3em] text-xs font-semibold uppercase mb-4">
