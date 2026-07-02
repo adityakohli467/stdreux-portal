@@ -104,11 +104,6 @@ export default function VipRegisterPage() {
       return;
     }
 
-    if (formData.password.length < 8) {
-      toast.error("Password should be at least 8 characters long");
-      return;
-    }
-
     setLoading(true);
 
     try {
