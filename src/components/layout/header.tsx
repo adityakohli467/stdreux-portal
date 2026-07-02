@@ -608,10 +608,33 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-white/20 animate-in slide-in-from-top">
-            <nav className="flex flex-col py-4">
+        {/* Mobile Menu Drawer */}
+        {/* Backdrop */}
+        <div
+          className={`lg:hidden fixed inset-0 z-[55] bg-black/50 transition-opacity duration-300 ${
+            mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+        {/* Slide-in panel from the right */}
+        <div
+          className={`lg:hidden fixed top-0 right-0 z-[60] h-full w-4/5 max-w-xs shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+        >
+          <div className="flex items-center justify-between px-4 h-16 border-b border-white/20">
+            <span className="text-white font-semibold tracking-wide">Menu</span>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-white hover:text-white/80 transition-colors p-2"
+              aria-label="Close menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <nav className="flex flex-col py-4">
               {isWholesale && !isWholesaleApproved ? (
                 // Unapproved wholesale users - can browse shop at retail prices
                 <>
@@ -813,7 +836,6 @@ export function Header() {
               </div>
             </nav>
           </div>
-        )}
       </div>
     </header>
   );
