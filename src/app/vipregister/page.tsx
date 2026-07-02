@@ -15,6 +15,7 @@ import {
   Star,
   Percent,
   Users,
+  ArrowRight,
 } from "lucide-react";
 import { useAuthStore } from "@/store/auth";
 import { toast } from "sonner";
@@ -62,21 +63,6 @@ const CRAFTED_CARDS = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    text: "Absolutely love ordering from St Dreux Coffee. The coffee beans are consistently high quality and perfect for my morning routine. The website is easy to use and the overall experience feels very premium. Highly recommend anyone looking for great coffee and tea at home.",
-    name: "Priya Nair",
-  },
-  {
-    text: "Excellent experience with St Dreux Coffee. The premium tea selection is fantastic and you can tell a lot f care has gone into sourcing quality products. Packaging was neat and professional, and everything arrived on time. Will definitely be ordering again.",
-    name: "Daniel Wong",
-  },
-  {
-    text: "I recently ordered from St Dreux Coffee and I'm genuinely impressed. The coffee beans are incredibly fresh and full of flavour, you can really taste the quality. The ordering process was smooth and delivery was quick. Perfect for anyone who takes their home coffee seriously.",
-    name: "Sarah Mitchell",
-  },
-];
-
 export default function VipRegisterPage() {
   const router = useRouter();
   const register = useAuthStore((state) => state.register);
@@ -91,6 +77,7 @@ export default function VipRegisterPage() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const handleChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -176,32 +163,29 @@ export default function VipRegisterPage() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left - Copy */}
             <div className="text-white">
-              <p className="text-[#e0b84c] tracking-[0.3em] text-xs font-semibold uppercase mb-4">
-                Roasted in Australia
+              <p className="text-[#E07856] tracking-[0.3em] text-xs font-semibold uppercase mb-4">
+                You&apos;re Invited
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Coffee Roasted
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                Welcome back
                 <br />
-                With Purpose.
+                to St. Dreux
               </h1>
+              <div className="w-16 h-1 bg-[#E07856] mb-6" />
               <p className="text-white/85 text-base sm:text-lg max-w-md mb-8 leading-relaxed">
-                Specialty coffee sourced from exceptional origins and roasted in
-                Australia for cafés, hospitality venues, and coffee lovers.
+                As one of our valued customers before 2022, you&apos;re invited
+                to unlock exclusive VIP benefits created just for you.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="#vip-register-form"
-                  className="inline-flex items-center justify-center bg-[#105a9c] hover:bg-[#0d4a82] text-white text-sm font-semibold tracking-wider uppercase px-8 py-3.5 rounded-md transition-colors"
-                >
-                  Register for VIP Access
-                </a>
-                <Link
-                  href="/shop"
-                  className="inline-flex items-center justify-center border border-white/70 hover:bg-white/10 text-white text-sm font-semibold tracking-wider uppercase px-8 py-3.5 rounded-md transition-colors"
-                >
-                  Explore Coffee
-                </Link>
-              </div>
+              <a
+                href="#vip-register-form"
+                className="inline-flex items-center justify-center gap-2 bg-[#E07856] hover:bg-[#cf6a49] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-md transition-colors"
+              >
+                Unlock Your VIP Access
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <p className="text-white/70 text-sm mt-4">
+                Create your account to get started
+              </p>
             </div>
 
             {/* Right - Register Form */}
@@ -410,62 +394,13 @@ export default function VipRegisterPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44] mb-1">
-              Our customers
-            </h2>
-            <p className="text-3xl sm:text-4xl font-bold text-[#0d1a44]">
-              keep coming back{" "}
-              <span
-                className="italic text-[#105a9c]"
-                style={{ fontFamily: "cursive" }}
-              >
-                for more.
-              </span>
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((review) => (
-              <div
-                key={review.name}
-                className="bg-[#F5F5F0] rounded-xl px-6 pt-8 pb-6"
-              >
-                <div
-                  className="text-[#105a9c] font-serif leading-none mb-2"
-                  style={{ fontSize: "56px", lineHeight: "40px" }}
-                >
-                  &#8220;
-                </div>
-                <p className="text-gray-600 mb-6 leading-relaxed text-sm">
-                  {review.text}
-                </p>
-                <p className="font-semibold text-[#0d1a44] mb-2">{review.name}</p>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      className="w-4 h-4 fill-[#105a9c] text-[#105a9c]"
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Follow the journey */}
-      <section className="py-8 bg-[#F5F5F0]">
+      {/* Instagram Follow Section */}
+      <section className="py-8 bg-[#f5f5f0]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-8">
+            {/* Left - Follow CTA */}
             <div className="lg:w-[20%] text-center lg:text-left">
-              <p className="text-xs font-semibold tracking-widest text-gray-600 mb-1">
-                FOLLOW THE JOURNEY
-              </p>
+              <p className="text-xs font-semibold tracking-widest text-gray-600 mb-1">FOLLOW THE JOURNEY</p>
               <p className="text-xl font-bold text-[#0d1a44] mb-3">@stdreuxau</p>
               <a
                 href="https://www.instagram.com/stdreuxau"
@@ -476,22 +411,44 @@ export default function VipRegisterPage() {
                 FOLLOW US
               </a>
             </div>
+            {/* Right - Image & Video Grid (alternating) */}
             <div className="lg:w-[80%] grid grid-cols-3 md:grid-cols-6 gap-2">
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/images/video-thumb-3.png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
+              {/* Video 3 Thumbnail (moved to first) */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video3.mp4")}>
+                <Image src="/assets/images/video-thumb-3.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
+              {/* Image 1 */}
               <div className="aspect-square overflow-hidden rounded-lg">
                 <Image src="/assets/sndurex/Feature Card.png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/images/video-thumb-1.png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
+              {/* Video 1 Thumbnail */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video1.mp4")}>
+                <Image src="/assets/images/video-thumb-1.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
+              {/* Image 2 */}
               <div className="aspect-square overflow-hidden rounded-lg">
                 <Image src="/assets/sndurex/Feature Card (2).png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <Image src="/assets/images/video-thumb-2.png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
+              {/* Video 2 Thumbnail */}
+              <div className="aspect-square overflow-hidden rounded-lg relative cursor-pointer group" onClick={() => setActiveVideo("/assets/videos/video2.mp4")}>
+                <Image src="/assets/images/video-thumb-2.png" alt="St. Dreux Coffee Video" width={200} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#0d1a44] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
+              {/* Image 3 */}
               <div className="aspect-square overflow-hidden rounded-lg">
                 <Image src="/assets/sndurex/Feature Card (1).png" alt="St. Dreux Coffee" width={200} height={200} className="w-full h-full object-cover" />
               </div>
@@ -499,6 +456,21 @@ export default function VipRegisterPage() {
           </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70" onClick={() => setActiveVideo(null)}>
+          <div className="relative w-full max-w-sm mx-4" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute -top-10 right-0 text-white hover:text-white/80 text-2xl font-bold"
+            >
+              ✕
+            </button>
+            <video src={activeVideo} controls autoPlay className="w-full rounded-lg" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
