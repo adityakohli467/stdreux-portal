@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Eye,
@@ -45,21 +44,6 @@ const VIP_BENEFITS = [
     icon: Users,
     title: "VIP COMMUNITY",
     description: "Join a community of coffee lovers who share their passion.",
-  },
-];
-
-const CRAFTED_CARDS = [
-  {
-    image: "/assets/sndurex/Feature Card.png",
-    title: "ETHICALLY\nSOURCED",
-  },
-  {
-    image: "/assets/sndurex/Feature Card (1).png",
-    title: "EXPERTLY\nROASTED",
-  },
-  {
-    image: "/assets/sndurex/Feature Card (2).png",
-    title: "UNIQUELY\nYOURS",
   },
 ];
 
@@ -296,16 +280,6 @@ export default function VipRegisterPage() {
                     {loading ? "Creating account..." : "Register & Unlock VIP Access"}
                   </button>
                 </form>
-
-                <p className="text-center text-sm text-gray-500 mt-4">
-                  Already have an account?{" "}
-                  <Link
-                    href="/auth/login"
-                    className="text-[#105a9c] font-semibold hover:underline"
-                  >
-                    Log in
-                  </Link>
-                </p>
               </div>
             </div>
           </div>
@@ -342,55 +316,6 @@ export default function VipRegisterPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Crafted with passion */}
-      <section className="py-16 bg-[#F5F5F0]">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="text-[#105a9c] tracking-[0.25em] text-xs font-semibold uppercase mb-3">
-                Exceptional Coffee, Every Time
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44] leading-tight mb-6">
-                Crafted with passion.
-                <br />
-                Roasted for you.
-              </h2>
-              <p className="text-gray-600 max-w-md mb-4 leading-relaxed">
-                At St. Dreux, we source the finest beans from sustainable farms
-                and roast them to perfection. Experience coffee that&apos;s made
-                to be savoured.
-              </p>
-              <p
-                className="text-2xl italic text-[#105a9c]"
-                style={{ fontFamily: "cursive" }}
-              >
-                Taste the difference.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-3 gap-3">
-              {CRAFTED_CARDS.map((card) => (
-                <div
-                  key={card.title}
-                  className="relative aspect-[3/4] rounded-lg overflow-hidden"
-                >
-                  <Image
-                    src={card.image}
-                    alt={card.title.replace("\n", " ")}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <p className="absolute bottom-3 left-3 text-white text-xs font-bold uppercase whitespace-pre-line leading-snug">
-                    {card.title}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
