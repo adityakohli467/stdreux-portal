@@ -680,7 +680,12 @@ export default function CheckoutPage() {
       const subtotal = getTotalPrice()
       const response = await api.post("/store/coupons/validate", {
         coupon_code: couponToValidate,
-        order_total: subtotal
+        order_total: subtotal,
+        items: items.map((item) => ({
+          product_id: item.product_id,
+          quantity: item.quantity,
+          total: getItemPrice(item) * item.quantity,
+        })),
       })
 
       // setValidatedCoupon(response.data) // No longer needed for intermediate step if we auto-apply
@@ -757,6 +762,39 @@ export default function CheckoutPage() {
     if (appliedCoupon) {
       const value = Number(appliedCoupon.value) || 0;
       const type = (appliedCoupon.type || '').toLowerCase(); // Handle case sensitivity
+
+      // Category-restricted coupons are computed server-side against the
+      // eligible-category subtotal; trust the returned discount amount.
+      if ((appliedCoupon as any).category_restricted && (appliedCoupon as any).discount_amount != null) {
+        couponDiscount = Math.min(Number((appliedCoupon as any).discount_amount) || 0, subtotal)
+        const afterDiscount = Math.max(0, afterWholesaleDiscount - couponDiscount)
+        const shippingFee = shippingMethod === "pickup" ? 0 : 10
+        let taxableAmount = 0;
+        items.forEach(item => {
+          if (!item.gst_free) {
+            taxableAmount += getItemPrice(item) * item.quantity;
+          }
+        });
+        if (couponDiscount > 0 && subtotal > 0) {
+          taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
+        }
+        const customerType = customer?.customer_type || ''
+        const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
+        const gst = (taxableAmount + shippingFee) / 10
+        const total = isWholesaleCustomer
+          ? afterDiscount + shippingFee + gst
+          : afterDiscount + shippingFee
+        return {
+          subtotal,
+          wholesaleDiscount,
+          couponDiscount,
+          afterWholesaleDiscount,
+          afterDiscount,
+          shippingFee,
+          gst,
+          total,
+        }
+      }
 
       // Calculate subtotals for mixed cart check
       const oneTimeItems = items.filter(item => !item.subscription);
