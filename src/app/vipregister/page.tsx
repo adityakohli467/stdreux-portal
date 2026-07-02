@@ -15,35 +15,52 @@ import {
   Percent,
   Users,
   ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 import { useAuthStore } from "@/store/auth";
 import { toast } from "sonner";
 
-const VIP_BENEFITS = [
+type VipBenefit = {
+  icon: LucideIcon;
+  eyebrow: string;
+  highlight?: string;
+  description: string;
+  featured?: boolean;
+  wide?: boolean;
+};
+
+const VIP_BENEFITS: VipBenefit[] = [
   {
     icon: Tag,
-    title: "30% OFF\nYOUR FIRST ORDER",
-    description: "Enjoy 30% off your first coffee purchase when you join.",
+    eyebrow: "Your First Order",
+    highlight: "30% OFF",
+    description: "Enjoy 30% off your first coffee purchase the moment you join.",
+    featured: true,
   },
   {
     icon: Lock,
-    title: "PRIORITY ACCESS\nTO LIMITED RELEASES",
-    description: "Be the first to get your hands on our most exclusive coffees.",
+    eyebrow: "Priority Access to",
+    highlight: "Limited Releases",
+    description: "Be first to get our most exclusive, limited-edition coffees.",
   },
   {
     icon: Star,
-    title: "EARLY ACCESS\nTO NEW RELEASES",
-    description: "Get early access to all new product launches before anyone else.",
+    eyebrow: "Early Access to",
+    highlight: "New Releases",
+    description: "Shop all new product launches before they go public.",
   },
   {
     icon: Percent,
-    title: "VIP DISCOUNT\nRENEWED ANNUALLY",
-    description: "Enjoy an exclusive VIP discount on all coffee products, every year.",
+    eyebrow: "VIP Discount",
+    highlight: "Renewed Annually",
+    description: "Your exclusive discount on all coffee products, every year.",
   },
   {
     icon: Users,
-    title: "VIP COMMUNITY",
-    description: "Join a community of coffee lovers who share their passion.",
+    eyebrow: "VIP Community",
+    description:
+      "Join a community of passionate coffee lovers who share your taste.",
+    wide: true,
   },
 ];
 
@@ -131,44 +148,55 @@ export default function VipRegisterPage() {
   return (
     <div className="bg-white">
       {/* Hero Banner */}
-      <section className="relative min-h-[560px] lg:min-h-[640px] flex items-center">
+      <section className="relative lg:min-h-[640px] flex items-center">
         <div className="absolute inset-0">
+          {/* Mobile banner */}
+          <Image
+            src="/assets/images/mobile_banner_vip.png"
+            alt="St. Dreux VIP Access"
+            fill
+            priority
+            className="object-cover lg:hidden"
+            style={{ objectPosition: "center top" }}
+          />
+          {/* Desktop banner */}
           <Image
             src="/assets/images/vip-banner.png"
             alt="St. Dreux Coffee Roasted With Purpose"
             fill
             priority
-            className="object-cover"
+            className="object-cover hidden lg:block"
             style={{ objectPosition: "center 35%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/40 lg:bg-gradient-to-r lg:from-black/85 lg:via-black/45 lg:to-transparent" />
         </div>
 
-        <div className="relative w-full container mx-auto px-6 py-12 lg:py-16">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="relative w-full container mx-auto px-6 py-8 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-5 lg:gap-16 items-center">
             {/* Left - Copy */}
             <div className="text-white">
-              <p className="text-[#E07856] tracking-[0.3em] text-xs font-semibold uppercase mb-4">
+              <p className="text-[#E07856] tracking-[0.3em] text-xs font-semibold uppercase mb-2 lg:mb-4">
                 You&apos;re Invited
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-3 lg:mb-4">
                 Welcome back
                 <br />
                 to St. Dreux
               </h1>
-              <div className="w-16 h-1 bg-[#E07856] mb-6" />
-              <p className="text-white/85 text-base sm:text-lg max-w-md mb-8 leading-relaxed">
+              <div className="w-16 h-1 bg-[#E07856] mb-3 lg:mb-6" />
+              <p className="text-white/85 text-sm sm:text-lg max-w-md mb-0 lg:mb-8 leading-relaxed">
                 As one of our valued customers before 2022, you&apos;re invited
                 to unlock exclusive VIP benefits created just for you.
               </p>
+              {/* CTA hidden on mobile */}
               <a
                 href="#vip-register-form"
-                className="inline-flex items-center justify-center gap-2 bg-[#E07856] hover:bg-[#cf6a49] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-md transition-colors"
+                className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#E07856] hover:bg-[#cf6a49] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-md transition-colors"
               >
                 Unlock Your VIP Access
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <p className="text-white/70 text-sm mt-4">
+              <p className="hidden lg:block text-white/70 text-sm mt-4">
                 Create your account to get started
               </p>
             </div>
@@ -296,30 +324,85 @@ export default function VipRegisterPage() {
       </section>
 
       {/* VIP Benefits */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <p className="text-[#105a9c] tracking-[0.25em] text-xs font-semibold uppercase mb-2">
               Your VIP Benefits
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0d1a44]">
+            <h2 className="text-2xl sm:text-4xl font-bold text-[#0d1a44]">
               Exclusive perks, just for you
             </h2>
             <div className="w-12 h-0.5 bg-[#105a9c] mx-auto mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
             {VIP_BENEFITS.map((benefit) => {
               const Icon = benefit.icon;
-              return (
-                <div key={benefit.title} className="text-center px-2">
-                  <div className="w-16 h-16 rounded-full bg-[#eaf1f8] flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-7 h-7 text-[#105a9c]" />
+
+              if (benefit.wide) {
+                return (
+                  <div
+                    key={benefit.eyebrow}
+                    className="col-span-2 flex items-center gap-4 rounded-2xl bg-[#f8f6f0] border border-[#ece8e0] px-5 py-4 text-left"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-[#eaf1f8] flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-[#105a9c]" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-wide text-[#0d1a44] mb-1">
+                        {benefit.eyebrow}
+                      </p>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm font-bold text-[#0d1a44] uppercase mb-2 whitespace-pre-line leading-snug">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                );
+              }
+
+              const featured = benefit.featured;
+              return (
+                <div
+                  key={benefit.eyebrow}
+                  className={`rounded-2xl border px-4 py-5 text-center ${
+                    featured
+                      ? "col-span-2 bg-[#0d1a44] border-transparent"
+                      : "bg-[#f8f6f0] border-[#ece8e0] hover:shadow-md transition-shadow"
+                  }`}
+                >
+                  <div
+                    className={`w-11 h-11 rounded-full flex items-center justify-center mx-auto mb-3 ${
+                      featured ? "bg-white/10" : "bg-[#eaf1f8]"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-5 h-5 ${
+                        featured ? "text-white" : "text-[#105a9c]"
+                      }`}
+                    />
+                  </div>
+                  <p
+                    className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${
+                      featured ? "text-white/70" : "text-[#0d1a44]"
+                    }`}
+                  >
+                    {benefit.eyebrow}
+                  </p>
+                  {benefit.highlight && (
+                    <p
+                      className={`font-extrabold mb-1.5 ${
+                        featured ? "text-white text-lg" : "text-[#105a9c] text-sm"
+                      }`}
+                    >
+                      {benefit.highlight}
+                    </p>
+                  )}
+                  <p
+                    className={`text-xs leading-relaxed ${
+                      featured ? "text-white/60" : "text-gray-500"
+                    }`}
+                  >
                     {benefit.description}
                   </p>
                 </div>
