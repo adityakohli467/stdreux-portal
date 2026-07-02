@@ -38,6 +38,7 @@ const VIP_BENEFITS: VipBenefit[] = [
     highlight: "30% OFF",
     description: "Enjoy 30% off your first coffee purchase when you join.",
     featured: true,
+    wide: true,
   },
   {
     icon: Lock,
@@ -67,7 +68,6 @@ const VIP_BENEFITS: VipBenefit[] = [
     title: "VIP COMMUNITY",
     eyebrow: "VIP Community",
     description: "Join a community of coffee lovers who share their passion.",
-    wide: true,
   },
 ];
 
@@ -343,25 +343,67 @@ export default function VipRegisterPage() {
             <div className="w-12 h-0.5 bg-[#105a9c] mx-auto mt-4" />
           </div>
 
-          {/* Mobile: card grid (4 equal square boxes + wide community card) */}
+          {/* Mobile: wide first-order card on top + 4 equal square boxes */}
           <div className="grid grid-cols-2 auto-rows-fr gap-3 max-w-2xl mx-auto lg:hidden">
             {VIP_BENEFITS.map((benefit) => {
               const Icon = benefit.icon;
 
               if (benefit.wide) {
+                const featuredWide = benefit.featured;
                 return (
                   <div
                     key={benefit.eyebrow}
-                    className="col-span-2 flex items-center gap-4 rounded-2xl bg-[#f8f6f0] border border-[#ece8e0] px-5 py-4 text-left"
+                    className={`col-span-2 flex items-center gap-4 rounded-2xl border px-5 py-4 text-left ${
+                      featuredWide
+                        ? "border-transparent"
+                        : "bg-[#f8f6f0] border-[#ece8e0]"
+                    }`}
+                    style={
+                      featuredWide
+                        ? {
+                            backgroundImage:
+                              "url(/assets/images/footer-bg.png)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }
+                        : undefined
+                    }
                   >
-                    <div className="w-11 h-11 rounded-full bg-[#eaf1f8] flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-[#105a9c]" />
+                    <div
+                      className={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 ${
+                        featuredWide ? "bg-white/10" : "bg-[#eaf1f8]"
+                      }`}
+                    >
+                      <Icon
+                        className={`w-5 h-5 ${
+                          featuredWide ? "text-white" : "text-[#105a9c]"
+                        }`}
+                      />
                     </div>
                     <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wide text-[#0d1a44] mb-1">
+                      <p
+                        className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${
+                          featuredWide ? "text-white/70" : "text-[#0d1a44]"
+                        }`}
+                      >
                         {benefit.eyebrow}
                       </p>
-                      <p className="text-xs text-gray-500 leading-relaxed">
+                      {benefit.highlight && (
+                        <p
+                          className={`font-extrabold mb-1 ${
+                            featuredWide
+                              ? "text-white text-lg"
+                              : "text-[#105a9c] text-sm"
+                          }`}
+                        >
+                          {benefit.highlight}
+                        </p>
+                      )}
+                      <p
+                        className={`text-xs leading-relaxed ${
+                          featuredWide ? "text-white/60" : "text-gray-500"
+                        }`}
+                      >
                         {benefit.description}
                       </p>
                     </div>
