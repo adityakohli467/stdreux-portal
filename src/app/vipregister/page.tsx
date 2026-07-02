@@ -280,6 +280,15 @@ export default function VipRegisterPage() {
                     {loading ? "Creating account..." : "Register & Unlock VIP Access"}
                   </button>
                 </form>
+
+                <p className="mt-5 text-[11px] leading-relaxed text-gray-500 border-t border-gray-200 pt-4">
+                  <span className="font-semibold text-gray-600">Disclaimer:</span>{" "}
+                  VIP membership is available exclusively to customers who register
+                  using the email address that received this invitation. Registrations
+                  made with any other email address will not qualify for VIP status or
+                  associated benefits, including the one-time 30% discount code
+                  (VIP30).
+                </p>
               </div>
             </div>
           </div>
