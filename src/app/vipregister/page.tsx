@@ -124,9 +124,12 @@ export default function VipRegisterPage() {
         vip: true,
       });
 
-      toast.success("✅ Welcome to VIP! Your account is ready.", {
-        duration: 4000,
-      });
+      toast.success(
+        "Registration Successful! Please check your email for your St. Dreux VIP welcome and exclusive benefits.",
+        {
+          duration: 6000,
+        }
+      );
       router.push("/");
     } catch (error: any) {
       console.error("VIP registration error:", error);
