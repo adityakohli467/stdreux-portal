@@ -283,12 +283,14 @@ import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { useAuthStore } from "@/store/auth";
 import { useCartStore } from "@/store/cart";
 import { ShoppingCart, Menu, X, User, LogOut, LogIn } from "lucide-react";
+import { LoginModal } from "@/components/LoginModal";
 
 export function Header() {
   const { isAuthenticated, user, customer, logout, checkAuth } = useAuthStore();
   const { getTotalItems } = useCartStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const pathname = usePathname();
 
   // On the VIP registration landing page, hide Cart & Register to keep
@@ -346,6 +348,7 @@ export function Header() {
   };
 
   return (
+    <>
     <header className="sticky top-0 z-50 shadow-md" style={{ backgroundImage: 'url(/assets/images/footer-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20 min-h-[64px] sm:min-h-[80px]">
@@ -567,14 +570,13 @@ export function Header() {
             ) : (
               !hideStoreActions && (
                 <div className="flex items-center gap-2">
-                  <Link href="/auth/login">
-                    <Button
-                      variant="outline"
-                      className="bg-transparent text-white border-white/60 hover:bg-white/10 hover:text-white px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
-                    >
-                      Login
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowLoginModal(true)}
+                    className="bg-transparent text-white border-white/60 hover:bg-white/10 hover:text-white px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
+                  >
+                    Login
+                  </Button>
                   <Link href="/auth/register">
                     <Button
                       className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
@@ -823,14 +825,16 @@ export function Header() {
                   </>
                 ) : (
                   <>
-                    <Link
-                      href="/auth/login"
-                      className="flex items-center gap-2 px-4 py-3 text-white hover:bg-white/10 transition-colors text-base"
-                      onClick={() => setMobileMenuOpen(false)}
+                    <button
+                      className="flex items-center gap-2 w-full px-4 py-3 text-white hover:bg-white/10 transition-colors text-base text-left"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setShowLoginModal(true);
+                      }}
                     >
                       <LogIn className="h-4 w-4" />
                       Login
-                    </Link>
+                    </button>
                     {!hideStoreActions && (
                       <Link
                         href="/auth/register"
@@ -848,5 +852,13 @@ export function Header() {
           </div>
       </div>
     </header>
+
+    <LoginModal
+      open={showLoginModal}
+      onOpenChange={setShowLoginModal}
+      onSuccess={() => checkAuth()}
+      registerHref="/auth/register"
+    />
+    </>
   );
 }
