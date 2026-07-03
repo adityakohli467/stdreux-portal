@@ -41,19 +41,12 @@ const VIP_BENEFITS: VipBenefit[] = [
     wide: true,
   },
   {
-    icon: Lock,
-    title: "PRIORITY ACCESS\nTO LIMITED RELEASES",
-    eyebrow: "Priority Access to",
-    highlight: "Limited Releases",
-    description: "Be the first to get your hands on our most exclusive coffees.",
-  },
-  {
     icon: Star,
-    title: "EARLY ACCESS\nTO NEW RELEASES",
-    eyebrow: "Early Access to",
+    title: "PRIORITY ACCESS\nTO NEW RELEASES",
+    eyebrow: "Priority Access to",
     highlight: "New Releases",
     description:
-      "Get early access to all new product launches before anyone else.",
+      "Be the first to get your hands on all our new coffee releases before anyone else.",
   },
   {
     icon: Percent,
