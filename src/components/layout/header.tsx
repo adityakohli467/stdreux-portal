@@ -566,13 +566,23 @@ export function Header() {
               </DropdownMenu>
             ) : (
               !hideStoreActions && (
-                <Link href="/auth/register">
-                  <Button
-                    className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
-                  >
-                    Register
-                  </Button>
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link href="/auth/login">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent text-white border-white/60 hover:bg-white/10 hover:text-white px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href="/auth/register">
+                    <Button
+                      className="bg-white text-[#0d1a2e] hover:bg-white/90 px-5 py-2 text-xs tracking-[0.1em] uppercase font-semibold rounded-sm"
+                    >
+                      Register
+                    </Button>
+                  </Link>
+                </div>
               )
             )}
           </div>
