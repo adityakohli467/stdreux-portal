@@ -464,8 +464,8 @@ export default function VipRegisterPage() {
             </div>
           </div>
 
-          {/* Desktop: original 5-column layout */}
-          <div className="hidden lg:grid grid-cols-5 gap-8">
+          {/* Desktop: 4-column layout, centered */}
+          <div className="hidden lg:grid grid-cols-4 gap-8 max-w-5xl mx-auto">
             {VIP_BENEFITS.map((benefit) => {
               const Icon = benefit.icon;
               return (
