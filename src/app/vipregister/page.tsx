@@ -320,7 +320,8 @@ export default function VipRegisterPage() {
                   using the email address that received this invitation. Registrations
                   made with any other email address will not qualify for VIP status or
                   associated benefits, including the one-time 30% discount code
-                  (VIP30).
+                  (VIP30). Please register within two weeks of receiving this email to
+                  enjoy the VIP benefits.
                 </p>
               </div>
             </div>
