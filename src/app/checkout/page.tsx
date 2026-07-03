@@ -24,6 +24,7 @@ import { toast } from "sonner"
 import { Minus, Plus, Trash2, ShoppingCart, X, Upload, Tag, Check, XCircle, ChevronDown, ChevronUp, Gift, CreditCard, FileText, CheckCircle } from "lucide-react"
 import { getProductImageUrl } from "@/lib/product-utils"
 import { Textarea } from "@/components/ui/textarea"
+import { LoginModal } from "@/components/LoginModal"
 
 interface Product {
   product_id: number
@@ -114,6 +115,7 @@ export default function CheckoutPage() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false)
   const [emailError, setEmailError] = useState<string | null>(null)
   const [isValidatingEmail, setIsValidatingEmail] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const checkEmailRegistration = async (email: string) => {
     if (!email || isAuthenticated) return
@@ -1344,18 +1346,31 @@ export default function CheckoutPage() {
           <div className="bg-[#FFF5F5] border border-[#FFE3E3] rounded-xl p-4 md:p-5 text-center shadow-sm">
             <p className="text-gray-700 text-sm md:text-base">
               Already have an account?{" "}
-              <Link href="/auth/login?redirect=/checkout" className="text-[#105a9c] font-bold hover:underline">
+              <button
+                type="button"
+                onClick={() => setShowLoginModal(true)}
+                className="text-[#105a9c] font-bold hover:underline"
+              >
                 Sign In
-              </Link>
+              </button>
               <span className="mx-4 text-gray-400">|</span>
               New here?{" "}
-              <Link href="/auth/register?redirect=/checkout" className="text-[] font-bold hover:underline">
+              <Link href="/auth/register?redirect=/checkout" className="text-[#105a9c] font-bold hover:underline">
                 Create Account
               </Link>
             </p>
           </div>
         </div>
       )}
+
+      <LoginModal
+        open={showLoginModal}
+        onOpenChange={setShowLoginModal}
+        onSuccess={() => {
+          // Cart and page state are preserved; refresh authoritative auth + customer details.
+          checkAuth()
+        }}
+      />
 
       {/* Main Checkout Content */}
       <section className="py-8">
