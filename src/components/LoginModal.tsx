@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuthStore } from "@/store/auth"
-import { useGoogleLogin } from "@react-oauth/google"
 import { toast } from "sonner"
 
 interface LoginModalProps {
@@ -25,27 +24,6 @@ interface LoginModalProps {
   /** Where the "Create Account" link should send the user (kept for guest checkout continuity). */
   registerHref?: string
 }
-
-const GoogleIcon = () => (
-  <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
-    <path
-      fill="#4285F4"
-      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1Z"
-    />
-    <path
-      fill="#34A853"
-      d="M12 23c2.97 0 5.46-.98 7.28-2.65l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.15-4.53H2.18v2.84A11 11 0 0 0 12 23Z"
-    />
-    <path
-      fill="#FBBC05"
-      d="M5.85 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.67-2.84Z"
-    />
-    <path
-      fill="#EA4335"
-      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.05l3.67 2.84C6.71 7.29 9.14 5.38 12 5.38Z"
-    />
-  </svg>
-)
 
 export function LoginModal({
   open,
@@ -84,40 +62,6 @@ export function LoginModal({
       setLoading(false)
     }
   }
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      setLoading(true)
-      try {
-        const response = await fetch(
-          "https://www.googleapis.com/oauth2/v2/userinfo",
-          {
-            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-          }
-        )
-        if (!response.ok) {
-          throw new Error("Failed to get user info from Google")
-        }
-        const userInfo = await response.json()
-        await useAuthStore.getState().googleLogin(userInfo, "customer")
-
-        const authState = useAuthStore.getState()
-        if (!authState.isAuthenticated) {
-          throw new Error("Google sign-in failed")
-        }
-        toast.success("Signed in with Google!")
-        handleSuccess()
-      } catch (error: any) {
-        toast.error(error?.message || "Google sign-in failed")
-      } finally {
-        setLoading(false)
-      }
-    },
-    onError: () => {
-      toast.error("Google sign-in was cancelled or failed")
-      setLoading(false)
-    },
-  })
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -198,26 +142,6 @@ export function LoginModal({
             )}
           </Button>
         </form>
-
-        <div className="relative py-1">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-gray-200" />
-          </div>
-          <div className="relative flex justify-center text-xs">
-            <span className="bg-background px-2 text-gray-400">or</span>
-          </div>
-        </div>
-
-        <Button
-          type="button"
-          variant="outline"
-          disabled={loading}
-          onClick={() => googleLogin()}
-          className="w-full gap-2"
-        >
-          <GoogleIcon />
-          Continue with Google
-        </Button>
 
         <p className="text-center text-sm text-gray-600 pt-1">
           New here?{" "}
