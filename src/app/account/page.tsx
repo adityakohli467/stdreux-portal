@@ -546,7 +546,7 @@ function AccountContent() {
               ) {
                 return "Essential Wholesaler";
               } else {
-                return "Retailer";
+                return customer.vip ? "Retailer VIP" : "Retailer";
               }
             })()}
           </Badge>
