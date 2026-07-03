@@ -82,7 +82,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false)
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([])
   const [shippingMethod, setShippingMethod] = useState(() => {
-    try { const v = typeof window !== 'undefined' ? sessionStorage.getItem('checkout_shippingMethod') : null; return v || "standard"; } catch { return "standard"; }
+    try { const v = typeof window !== 'undefined' ? sessionStorage.getItem('checkout_shippingMethod') : null; return v || ""; } catch { return ""; }
   })
   const [shipToDifferentAddress, setShipToDifferentAddress] = useState(() => {
     try { const v = typeof window !== 'undefined' ? sessionStorage.getItem('checkout_shipDiff') : null; return v === 'true'; } catch { return false; }
@@ -770,7 +770,7 @@ export default function CheckoutPage() {
       if ((appliedCoupon as any).category_restricted && (appliedCoupon as any).discount_amount != null) {
         couponDiscount = Math.min(Number((appliedCoupon as any).discount_amount) || 0, subtotal)
         const afterDiscount = Math.max(0, afterWholesaleDiscount - couponDiscount)
-        const shippingFee = shippingMethod === "pickup" ? 0 : 10
+        const shippingFee = shippingMethod === "standard" ? 10 : 0
         let taxableAmount = 0;
         items.forEach(item => {
           if (!item.gst_free) {
@@ -825,7 +825,7 @@ export default function CheckoutPage() {
     }
 
     const afterDiscount = Math.max(0, afterWholesaleDiscount - couponDiscount)
-    const shippingFee = shippingMethod === "pickup" ? 0 : 10
+    const shippingFee = shippingMethod === "standard" ? 10 : 0
 
     // Calculate 10% GST only for items NOT marked as GST free
     let taxableAmount = 0;
@@ -982,6 +982,11 @@ export default function CheckoutPage() {
     if (emailError) {
       toast.error(emailError)
       setLoading(false)
+      return
+    }
+
+    if (!shippingMethod) {
+      toast.error("Please select a shipping method")
       return
     }
 
