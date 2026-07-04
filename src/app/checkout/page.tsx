@@ -799,9 +799,8 @@ export default function CheckoutPage() {
             taxableAmount += getItemPrice(item) * item.quantity;
           }
         });
-        if (couponDiscount > 0 && subtotal > 0) {
-          taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
-        }
+        // GST matches admin view-order rule exactly: (taxable + delivery) / 10
+        // on full non-GST-free line totals (no coupon proportional reduction).
         const customerType = customer?.customer_type || ''
         const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
         const gst = (taxableAmount + shippingFee) / 10
@@ -858,13 +857,9 @@ export default function CheckoutPage() {
       }
     });
 
-    // Apply proportional coupon discount to taxable amount if any
-    if (couponDiscount > 0 && subtotal > 0) {
-      taxableAmount = taxableAmount * (1 - (couponDiscount / subtotal));
-    }
-
-    // Delivery fee is always taxable
-    // GST is always taxableAmount / 10
+    // Delivery fee is always taxable.
+    // GST matches admin view-order rule exactly: (taxable + delivery) / 10
+    // on full non-GST-free line totals (no coupon proportional reduction).
     const customerType = customer?.customer_type || ''
     const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
     const gst = (taxableAmount + shippingFee) / 10
@@ -1016,6 +1011,41 @@ export default function CheckoutPage() {
 
 
     try {
+      // Re-validate any applied coupon server-side before charging. The applied
+      // coupon is persisted in sessionStorage and the payable amount is computed
+      // on the client, so without this check a one-time coupon that was already
+      // redeemed (in a prior order) could still discount the actual charge.
+      if (appliedCoupon?.code) {
+        try {
+          const subtotalForCoupon = getTotalPrice()
+          const revalidate = await api.post("/store/coupons/validate", {
+            coupon_code: appliedCoupon.code,
+            order_total: subtotalForCoupon,
+            items: items.map((item) => ({
+              product_id: item.product_id,
+              quantity: item.quantity,
+              total: getItemPrice(item) * item.quantity,
+            })),
+          })
+          if (!revalidate.data?.valid) {
+            setAppliedCoupon(null)
+            sessionStorage.removeItem('checkout_appliedCoupon')
+            toast.error(revalidate.data?.message || "This coupon is no longer valid and has been removed.")
+            setLoading(false)
+            return
+          }
+        } catch (revalidateError: any) {
+          setAppliedCoupon(null)
+          sessionStorage.removeItem('checkout_appliedCoupon')
+          toast.error(
+            revalidateError.response?.data?.message ||
+              "This coupon is no longer valid and has been removed. Please review your total and try again."
+          )
+          setLoading(false)
+          return
+        }
+      }
+
       // Split items into One-Time and Subscription
       const oneTimeItems = items.filter(item => !item.subscription);
       const subscriptionItems = items.filter(item => item.subscription);
@@ -1278,13 +1308,9 @@ export default function CheckoutPage() {
       }
     });
 
-    // Apply proportional coupon discount to taxable amount if any
-    if (couponDiscount > 0 && subtotal > 0) {
-      taxableAmountGroup = taxableAmountGroup * (1 - (couponDiscount / subtotal));
-    }
-
-    // Delivery fee is always taxable
-    // GST is always taxableAmount / 10
+    // Delivery fee is always taxable.
+    // GST matches admin view-order rule exactly: (taxable + delivery) / 10
+    // on full non-GST-free line totals (no coupon proportional reduction).
     const customerType = customer?.customer_type || ''
     const isWholesaleCustomer = customerType.includes('Wholesale') || customerType.includes('Wholesaler') || !!customer?.wholesale_type
     const gst = (taxableAmountGroup + shippingFee) / 10

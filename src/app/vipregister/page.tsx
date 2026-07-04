@@ -87,8 +87,17 @@ export default function VipRegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.fullName.trim()) {
+    const trimmedName = formData.fullName.trim();
+    if (!trimmedName) {
       toast.error("Please enter your full name");
+      return;
+    }
+
+    // A last name is required to create the account, so make sure the full
+    // name contains at least a first and last name before submitting.
+    const nameParts = trimmedName.split(/\s+/).filter(Boolean);
+    if (nameParts.length < 2) {
+      toast.error("Please enter your full name, including your last name");
       return;
     }
 
@@ -100,9 +109,8 @@ export default function VipRegisterPage() {
     setLoading(true);
 
     try {
-      const nameParts = formData.fullName.trim().split(/\s+/);
-      const firstname = nameParts[0] || "";
-      const lastname = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+      const firstname = nameParts[0];
+      const lastname = nameParts.slice(1).join(" ");
 
       await register({
         firstname,
