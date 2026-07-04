@@ -103,7 +103,12 @@ export default function CheckoutPage() {
   const [couponCode, setCouponCode] = useState("")
   const [validatedCoupon, setValidatedCoupon] = useState<ValidatedCoupon | null>(null)
   const [isValidatingCoupon, setIsValidatingCoupon] = useState(false)
-  const [appliedCoupon, setAppliedCoupon] = useState<ValidatedCoupon['coupon'] | null>(null)
+  const [appliedCoupon, setAppliedCoupon] = useState<ValidatedCoupon['coupon'] | null>(() => {
+    try {
+      const saved = typeof window !== 'undefined' ? sessionStorage.getItem('checkout_appliedCoupon') : null
+      return saved ? JSON.parse(saved) : null
+    } catch { return null }
+  })
   const [availableCoupons, setAvailableCoupons] = useState<Coupon[]>([])
   const [showAvailableCoupons, setShowAvailableCoupons] = useState(false)
   const [isLoadingCoupons, setIsLoadingCoupons] = useState(false)
@@ -179,6 +184,17 @@ export default function CheckoutPage() {
   useEffect(() => {
     sessionStorage.setItem('checkout_deliveryNotes', deliveryNotes)
   }, [deliveryNotes])
+
+  // Persist applied coupon so it is not lost when navigating between pages
+  useEffect(() => {
+    try {
+      if (appliedCoupon) {
+        sessionStorage.setItem('checkout_appliedCoupon', JSON.stringify(appliedCoupon))
+      } else {
+        sessionStorage.removeItem('checkout_appliedCoupon')
+      }
+    } catch {}
+  }, [appliedCoupon])
 
 
 
@@ -1153,6 +1169,7 @@ export default function CheckoutPage() {
           sessionStorage.removeItem('checkout_shippingMethod')
           sessionStorage.removeItem('checkout_shipDiff')
           sessionStorage.removeItem('checkout_deliveryNotes')
+          setAppliedCoupon(null)
           setConfirmedOrderIds(createdOrderIds)
           setShowSuccessModal(true)
         }
@@ -1223,7 +1240,12 @@ export default function CheckoutPage() {
 
     let couponDiscount = 0
     if (coupon) {
-      if (coupon.type === 'percentage') {
+      // Category-restricted coupons are computed server-side against the
+      // eligible-category subtotal; trust the returned discount amount so the
+      // payment amount matches the displayed total.
+      if (coupon.category_restricted && coupon.discount_amount != null) {
+        couponDiscount = Math.min(Number(coupon.discount_amount) || 0, subtotal)
+      } else if (coupon.type === 'percentage') {
         couponDiscount = (subtotal * coupon.value) / 100
         if (coupon.maximum_discount && couponDiscount > coupon.maximum_discount) {
           couponDiscount = coupon.maximum_discount

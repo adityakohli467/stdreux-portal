@@ -120,6 +120,7 @@ function PaymentForm({
               sessionStorage.removeItem('pending_orders');
               sessionStorage.removeItem('payment_intent_id');
               sessionStorage.removeItem('client_secret');
+              sessionStorage.removeItem('checkout_appliedCoupon');
 
               toast.success("Payment successful! Orders created.");
               onSuccess();
