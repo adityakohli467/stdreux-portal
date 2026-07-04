@@ -69,6 +69,7 @@ function AccountContent() {
   const { addItem, clearCart } = useCartStore()
   const [orders, setOrders] = useState<Order[]>([])
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([])
+  const [invoiceLoadingId, setInvoiceLoadingId] = useState<number | null>(null)
   const [subscriptionToRenew, setSubscriptionToRenew] = useState<Subscription | null>(null)
   const [subscriptionIdToCancel, setSubscriptionIdToCancel] = useState<number | null>(null)
   const [showCancelSuccess, setShowCancelSuccess] = useState(false)
@@ -518,6 +519,37 @@ function AccountContent() {
     router.push("/")
   }
 
+  // Open the authoritative tax-invoice PDF (same document sent by email and
+  // downloaded from admin). Fetched with the auth token so it stays private,
+  // then opened in a new tab via an object URL.
+  const handleViewInvoice = async (orderId: number) => {
+    try {
+      setInvoiceLoadingId(orderId)
+      const response = await api.get(`/store/orders/${orderId}/invoice-pdf`, {
+        responseType: "blob",
+      })
+      const blob = new Blob([response.data], { type: "application/pdf" })
+      const url = window.URL.createObjectURL(blob)
+      const opened = window.open(url, "_blank")
+      if (!opened) {
+        // Popup blocked - fall back to a direct download.
+        const link = document.createElement("a")
+        link.href = url
+        link.download = `invoice-${orderId}.pdf`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }
+      // Release the object URL after the browser has had time to load it.
+      setTimeout(() => window.URL.revokeObjectURL(url), 60000)
+    } catch (error) {
+      console.error("Failed to load invoice:", error)
+      toast.error("Failed to load invoice. Please try again.")
+    } finally {
+      setInvoiceLoadingId(null)
+    }
+  }
+
   if (!isAuthenticated) {
     return null
   }
@@ -888,11 +920,16 @@ function AccountContent() {
                             </div>
                           </Link>
                           <div className="flex flex-col gap-2 ml-4">
-                            <Link href={`/orders/${order.order_id}/invoice`}>
-                              <Button variant="outline" size="sm" className="w-full">
-                                Invoice
-                              </Button>
-                            </Link>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="w-full"
+                              onClick={() => handleViewInvoice(order.order_id)}
+                              disabled={invoiceLoadingId === order.order_id}
+                            >
+                              {invoiceLoadingId === order.order_id ? "Loading..." : "Invoice"}
+                            </Button>
                             {order.order_status === 1 && (
                               <Button
                                 onClick={(e) => {

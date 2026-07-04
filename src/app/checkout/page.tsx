@@ -72,6 +72,8 @@ interface ValidatedCoupon {
     discount_amount: number
     minimum_order?: number
     maximum_discount?: number
+    category_restricted?: boolean
+    applicable_categories?: string[]
   }
 }
 
@@ -985,14 +987,43 @@ export default function CheckoutPage() {
     //   return
     // }
 
-    // Validate State fields manually as Select components might not trigger native required validation
-    if (!billingData.state) {
-      toast.error("Please select a valid state for billing address")
-      return
+    // Validate every mandatory field in JS (the form uses noValidate) so that
+    // mobile users always get a clear message and we scroll/focus the first
+    // missing field. Native validation is unreliable for the custom State
+    // Select and its hidden input never becomes visible on mobile.
+    const focusInvalidField = (id: string) => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" })
+        setTimeout(() => {
+          try {
+            ;(el as HTMLElement).focus({ preventScroll: true })
+          } catch {}
+        }, 350)
+      }
+    }
+
+    const requiredBillingFields: Array<{ value: string; id: string; message: string }> = [
+      { value: billingData.firstName, id: "billing-firstname", message: "Please enter your first name" },
+      { value: billingData.phone, id: "billing-phone", message: "Please enter your phone number" },
+      { value: billingData.email, id: "billing-email", message: "Please enter your email address" },
+      { value: billingData.streetAddress, id: "billing-street", message: "Please enter your house number & street name" },
+      { value: billingData.suburb, id: "billing-suburb", message: "Please enter your suburb" },
+      { value: billingData.state, id: "billing-state-field", message: "Please select your state" },
+      { value: billingData.postcode, id: "billing-postcode", message: "Please enter your postcode" },
+    ]
+
+    for (const field of requiredBillingFields) {
+      if (!field.value || !String(field.value).trim()) {
+        toast.error(field.message)
+        focusInvalidField(field.id)
+        return
+      }
     }
 
     if (shipToDifferentAddress && !shippingData.state) {
       toast.error("Please select a valid state for shipping address")
+      focusInvalidField("shipping-state-field")
       return
     }
 
@@ -1426,15 +1457,17 @@ export default function CheckoutPage() {
         open={showLoginModal}
         onOpenChange={setShowLoginModal}
         onSuccess={() => {
-          // Cart and page state are preserved; refresh authoritative auth + customer details.
-          checkAuth()
+          // Cart and page state are preserved; refresh authoritative auth and
+          // then autofill the billing/shipping form from the saved account
+          // details (populateBillingFromUser re-runs checkAuth internally).
+          populateBillingFromUser()
         }}
       />
 
       {/* Main Checkout Content */}
       <section className="py-8">
         <div className="container mx-auto px-6">
-          <form onSubmit={handlePlaceOrder}>
+          <form onSubmit={handlePlaceOrder} noValidate>
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Left Column - Billing and Shipping */}
               <div className="lg:col-span-2 space-y-6 order-1 lg:order-1">
@@ -1563,7 +1596,7 @@ export default function CheckoutPage() {
                         />
                       </div>
 
-                      <div className="relative">
+                      <div className="relative" id="billing-state-field">
                         <Label htmlFor="billing-state">State <span className="text-red-500">*</span></Label>
                         <Select value={billingData.state} onValueChange={(value) => setBillingData({ ...billingData, state: value })}>
                           <SelectTrigger>
@@ -1919,19 +1952,6 @@ export default function CheckoutPage() {
                       <div className="mb-6 pb-4 border-b">
                         <div className="flex items-center justify-between mb-2">
                           <Label className="block font-medium">Coupon Code</Label>
-                          {availableCoupons.length > 0 && (
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setShowAvailableCoupons(!showAvailableCoupons)}
-                              className="text-blue-600 hover:text-blue-800 h-auto p-0 hover:bg-transparent font-normal"
-                            >
-                              <Gift className="h-3 w-3 mr-1" />
-                              {showAvailableCoupons ? "Hide" : "View Available Coupons"}
-                              {showAvailableCoupons ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />}
-                            </Button>
-                          )}
                         </div>
 
                         {/* Available Coupons Accordion */}
@@ -2072,7 +2092,14 @@ export default function CheckoutPage() {
 
                       {appliedCoupon && (
                         <div className="flex justify-between text-sm text-green-600">
-                          <span>Discount</span>
+                          <span>
+                            Discount
+                            {appliedCoupon.applicable_categories && appliedCoupon.applicable_categories.length > 0 && (
+                              <span className="block text-xs text-gray-500">
+                                Applies to {appliedCoupon.applicable_categories.join(', ')} only
+                              </span>
+                            )}
+                          </span>
                           <span>-${totals.couponDiscount.toFixed(2)}</span>
                         </div>
                       )}
