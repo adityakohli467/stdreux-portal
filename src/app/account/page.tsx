@@ -34,6 +34,8 @@ interface Order {
   item_count?: number
   delivery_date_time?: string
   gst?: string | number
+  coupon_discount?: string | number
+  coupon_code?: string | null
 }
 
 interface Subscription {
@@ -863,6 +865,11 @@ function AccountContent() {
                                 {order.item_count && (
                                   <p className="text-xs text-gray-400 mt-1">
                                     {order.item_count} item{order.item_count !== 1 ? 's' : ''}
+                                  </p>
+                                )}
+                                {order.coupon_discount && parseFloat(String(order.coupon_discount)) > 0 && (
+                                  <p className="text-xs text-green-600 mt-1">
+                                    Coupon Discount{order.coupon_code ? ` (${order.coupon_code})` : ''}: -${parseFloat(String(order.coupon_discount)).toFixed(2)}
                                   </p>
                                 )}
                               </div>
