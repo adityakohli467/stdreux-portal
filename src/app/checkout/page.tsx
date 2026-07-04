@@ -360,32 +360,38 @@ export default function CheckoutPage() {
       if (fetchedDetails) {
         setCustomerDetails(fetchedDetails)
 
-        // Only overwrite form data from API if user hasn't already filled the form
-        const savedBilling = getSessionFormData('checkout_billing')
-        const hasUserFilledForm = savedBilling && Object.values(savedBilling).some((v: any) => v && v !== 'Australia')
-
-        if (!hasUserFilledForm) {
-          const newBillingData = {
-            firstName: fetchedDetails.firstname || "",
-            lastName: fetchedDetails.lastname || "",
-            phone: fetchedDetails.telephone || "",
-            country: "Australia",
-            streetAddress: fetchedDetails.address_line1 || "",
-            apartment: fetchedDetails.address_line2 || "",
-            suburb: fetchedDetails.suburb || "",
-            state: fetchedDetails.state || "",
-            postcode: fetchedDetails.postal_code || "",
-            email: fetchedDetails.email || currentUser.email || "",
-          }
-
-          setBillingData(newBillingData)
-
-          setShippingData({
-            ...newBillingData,
-            firstName: newBillingData.firstName,
-            lastName: newBillingData.lastName,
-          })
+        // Values available from the user's saved account details
+        const accountData = {
+          firstName: fetchedDetails.firstname || "",
+          lastName: fetchedDetails.lastname || "",
+          phone: fetchedDetails.telephone || "",
+          country: "Australia",
+          streetAddress: fetchedDetails.address_line1 || "",
+          apartment: fetchedDetails.address_line2 || "",
+          suburb: fetchedDetails.suburb || "",
+          state: fetchedDetails.state || "",
+          postcode: fetchedDetails.postal_code || "",
+          email: fetchedDetails.email || currentUser.email || "",
         }
+
+        // Merge account details into the form: keep any value the user has
+        // already typed, and fill every empty field from the account. This
+        // ensures a freshly saved address prefills even when name/email were
+        // already populated on a previous visit.
+        const mergeAccountData = (prev: any) => {
+          const merged = { ...prev }
+          ;(Object.keys(accountData) as Array<keyof typeof accountData>).forEach((key) => {
+            const current = prev?.[key]
+            const isEmpty = !current || (key === 'country' && current === 'Australia')
+            if (isEmpty && accountData[key]) {
+              merged[key] = accountData[key]
+            }
+          })
+          return merged
+        }
+
+        setBillingData((prev: any) => mergeAccountData(prev))
+        setShippingData((prev: any) => mergeAccountData(prev))
       } else {
         const nameParts = (currentUser.username || "").trim().split(/\s+/);
         const firstName = nameParts[0] || "";
@@ -1409,10 +1415,10 @@ export default function CheckoutPage() {
                 {/* Billing Details */}
                 <Card>
                   <CardContent className="pt-6">
-                    <div className="flex justify-between items-center mb-6">
-                      <h2 className="text-2xl font-bold text-gray-900">Billing Details</h2>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-6">
+                      <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Billing Details</h2>
                       {isAuthenticated && (
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <div className="text-sm text-gray-500">
                             <span className="inline-flex items-center gap-1">
                               <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
