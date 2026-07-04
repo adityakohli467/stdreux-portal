@@ -262,7 +262,59 @@ function PaymentPageContent() {
       if (storedClientSecret) {
         setClientSecret(storedClientSecret);
       }
-      if (urlAmount) {
+
+      // Build the order summary from the pending orders saved during checkout
+      // so the breakdown (subtotal, discount, delivery fee, GST) is shown
+      // correctly instead of collapsing everything into the total.
+      let summary: any = null;
+      try {
+        const pendingOrdersJson = sessionStorage.getItem('pending_orders');
+        if (pendingOrdersJson) {
+          const pendingOrders = JSON.parse(pendingOrdersJson);
+          if (Array.isArray(pendingOrders) && pendingOrders.length > 0) {
+            const agg = pendingOrders.reduce(
+              (acc: any, o: any) => {
+                acc.subtotal += Number.parseFloat(o.subtotal || "0") || 0;
+                acc.delivery_fee += Number.parseFloat(o.delivery_fee || "0") || 0;
+                acc.coupon_discount +=
+                  Number.parseFloat(o.coupon_discount || "0") || 0;
+                acc.gst += Number.parseFloat(o.gst || "0") || 0;
+                acc.order_total += Number.parseFloat(o.order_total || "0") || 0;
+                if (!acc.coupon_code && o.coupon_code) acc.coupon_code = o.coupon_code;
+                return acc;
+              },
+              {
+                subtotal: 0,
+                delivery_fee: 0,
+                coupon_discount: 0,
+                gst: 0,
+                order_total: 0,
+                coupon_code: null as string | null,
+              },
+            );
+
+            const total = urlAmount
+              ? Number.parseFloat(urlAmount)
+              : agg.order_total;
+
+            summary = {
+              subtotal: agg.subtotal.toString(),
+              delivery_fee: agg.delivery_fee.toString(),
+              coupon_discount: agg.coupon_discount.toString(),
+              coupon_code: agg.coupon_code || undefined,
+              gst: agg.gst.toString(),
+              total: total.toString(),
+              order_total: total.toString(),
+            };
+          }
+        }
+      } catch (e) {
+        console.warn('[PaymentPage] Failed to build summary from pending_orders:', e);
+      }
+
+      if (summary) {
+        setOrder(summary);
+      } else if (urlAmount) {
         setOrder({
           order_total: urlAmount,
           total: urlAmount,
