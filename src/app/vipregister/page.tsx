@@ -33,10 +33,10 @@ type VipBenefit = {
 const VIP_BENEFITS: VipBenefit[] = [
   {
     icon: Tag,
-    title: "30% OFF\nYOUR FIRST ORDER",
-    eyebrow: "Your First Order",
+    title: "30% OFF\nON COFFEE",
+    eyebrow: "On Coffee",
     highlight: "30% OFF",
-    description: "Enjoy 30% off your first coffee purchase when you join.",
+    description: "Enjoy 30% off on coffee for the next three months when you join.",
     featured: true,
     wide: true,
   },
