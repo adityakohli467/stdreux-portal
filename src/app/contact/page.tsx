@@ -244,7 +244,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-[#031881] mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-900 font-medium">Email</p>
-                    <p className="text-gray-700">contact@stdreux.com.au</p>
+                    <p className="text-gray-700">info@stdreux.com.au</p>
                   </div>
                 </div>
 
