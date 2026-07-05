@@ -58,7 +58,8 @@ function RegisterPageContent() {
   }, [searchParams, wholesaleType]);
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     phoneNumber: "",
     email: "",
     companyName: "",
@@ -198,6 +199,16 @@ function RegisterPageContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!formData.firstName.trim()) {
+      toast.error("First name is required");
+      return;
+    }
+
+    if (!formData.lastName.trim()) {
+      toast.error("Last name is required");
+      return;
+    }
+
     if (userType === "wholesale") {
       if (!formData.preferredContactMethod) {
         toast.error("Please select a preferred contact method");
@@ -232,9 +243,8 @@ function RegisterPageContent() {
     setLoading(true);
 
     try {
-      const nameParts = formData.fullName.trim().split(/\s+/);
-      const firstname = nameParts[0] || "";
-      const lastname = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+      const firstname = formData.firstName.trim();
+      const lastname = formData.lastName.trim();
 
       const registrationData: any = {
         firstname: firstname,
@@ -487,37 +497,37 @@ function RegisterPageContent() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {userType === "wholesale" ? (
-              <div className="grid grid-cols-2 gap-4">
-                <Input
-                  type="text"
-                  placeholder="Full Name"
-                  value={formData.fullName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
-                  }
-                  className="px-4 py-6 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                type="text"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={(e) =>
+                  setFormData({ ...formData, firstName: e.target.value })
+                }
+                className="px-4 py-6 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              <Input
+                type="text"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={(e) =>
+                  setFormData({ ...formData, lastName: e.target.value })
+                }
+                className="px-4 py-6 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+
+            {userType === "wholesale" && (
+              <div>
                 <Input
                   type="text"
                   placeholder="Company Name"
                   value={formData.companyName}
                   onChange={(e) =>
                     setFormData({ ...formData, companyName: e.target.value })
-                  }
-                  className="px-4 py-6 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            ) : (
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Full Name"
-                  value={formData.fullName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
                   }
                   className="w-full px-4 py-6 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
