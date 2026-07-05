@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   title: "St. Dreux Coffee - Premium Coffee & Tea",
   description: "Discover premium coffee and tea from St. Dreux Coffee. Shop our selection or become a wholesale partner.",
   icons: {
-    icon: "/assets/images/logo.png",
-    apple: "/assets/images/logo.png",
+    icon: "/assets/images/favicon.png",
+    apple: "/assets/images/favicon.png",
   },
 }
 
