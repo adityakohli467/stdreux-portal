@@ -89,17 +89,13 @@ export default function VipRegisterPage() {
 
     const trimmedName = formData.fullName.trim();
     if (!trimmedName) {
-      toast.error("Please enter your full name");
+      toast.error("Please enter your name");
       return;
     }
 
-    // A last name is required to create the account, so make sure the full
-    // name contains at least a first and last name before submitting.
+    // Only a first name is required. A last name is optional, so customers
+    // with a single-word name are still able to register.
     const nameParts = trimmedName.split(/\s+/).filter(Boolean);
-    if (nameParts.length < 2) {
-      toast.error("Please enter your full name, including your last name");
-      return;
-    }
 
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
@@ -110,7 +106,7 @@ export default function VipRegisterPage() {
 
     try {
       const firstname = nameParts[0];
-      const lastname = nameParts.slice(1).join(" ");
+      const lastname = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
       await register({
         firstname,
@@ -353,14 +349,9 @@ export default function VipRegisterPage() {
                   <div className="w-11 h-11 rounded-full flex items-center justify-center mb-3 bg-[#eaf1f8]">
                     <Icon className="w-5 h-5 text-[#105a9c]" />
                   </div>
-                  <p className="text-[11px] font-bold uppercase tracking-wide mb-1 text-[#0d1a44]">
-                    {benefit.eyebrow}
-                  </p>
-                  {benefit.highlight && (
-                    <p className="font-extrabold mb-1.5 text-[#105a9c] text-sm">
-                      {benefit.highlight}
-                    </p>
-                  )}
+                  <h3 className="text-[11px] font-bold uppercase tracking-wide mb-1.5 text-[#0d1a44] whitespace-pre-line leading-snug">
+                    {benefit.title}
+                  </h3>
                   <p className="text-xs leading-relaxed text-gray-500">
                     {benefit.description}
                   </p>
