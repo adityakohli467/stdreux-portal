@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, notFound } from "next/navigation";
 import Image from "next/image";
 import {
   Eye,
@@ -64,7 +64,12 @@ const VIP_BENEFITS: VipBenefit[] = [
   },
 ];
 
+// This page has been disabled. Always return a 404 so it cannot be accessed.
 export default function VipRegisterPage() {
+  notFound();
+}
+
+function VipRegisterPageDisabled() {
   const router = useRouter();
   const register = useAuthStore((state) => state.register);
 
