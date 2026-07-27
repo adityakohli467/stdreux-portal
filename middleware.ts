@@ -8,6 +8,12 @@ export function middleware(request: NextRequest) {
   // Only protect specific routes
   const protectedRoutes = ['/wholesale', '/shop', '/cart', '/checkout']
   const currentPath = request.nextUrl.pathname
+
+  // Disabled routes: return a 404 so the page cannot be accessed
+  const disabledRoutes = ['/vipregister']
+  if (disabledRoutes.some(route => currentPath === route || currentPath.startsWith(`${route}/`))) {
+    return new NextResponse(null, { status: 404 })
+  }
   
   // Check if current path is protected
   const isProtectedRoute = protectedRoutes.some(route => 
@@ -35,6 +41,8 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/',
+    '/vipregister',
+    '/vipregister/:path*',
     '/wholesale/:path*',
     '/shop/:path*',
     '/cart/:path*',
